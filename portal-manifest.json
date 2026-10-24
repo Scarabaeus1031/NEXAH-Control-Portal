@@ -1,0 +1,48 @@
+{
+  "schema": "nexah.owner-read-portal.manifest.v1",
+  "status": "PUBLIC RELEASE / READ ONLY / NO CONTROL",
+  "built_at": "2026-10-24T01:42:59.164Z",
+  "authority": "projection-only; authority remains with owning sources",
+  "surface_count": 3,
+  "scope": [
+    "MISSION CONTROL",
+    "A0 SCIENCE DESK",
+    "B0 BUILDER DECK"
+  ],
+  "scarabaeus_return": "https://www.scarabaeus1033.net",
+  "file_count": 30,
+  "bytes": 10071394,
+  "sources": [
+    {
+      "id": "MISSION_CONTROL",
+      "label": "MISSION CONTROL",
+      "repository": "00 EXECUTIVE/NEXAH-Mission-Control",
+      "branch": "codex/mission-control-status-sync",
+      "revision": "0c9aa3ed1530191d1a583e6adb7036009465e8bd",
+      "dirty": true,
+      "entry": "00 EXECUTIVE/NEXAH-Mission-Control/INTERNAL_NAVIGATOR/index.html",
+      "entry_sha256": "08e48d96411b875f57b4138eadeb1449ca98208611e3d72d98ca7a1bcbc5be2f"
+    },
+    {
+      "id": "B0_BUILDER_DECK",
+      "label": "B0 BUILDER DECK",
+      "repository": "10 NEXAH CORE/NEXAH",
+      "branch": "codex/core-readme-currentness",
+      "revision": "c674888e33d6da1c76200c5b969b70be8703846a",
+      "dirty": true,
+      "entry": "10 NEXAH CORE/NEXAH/BUILDER/B0_BUILDER_DECK/index.html",
+      "entry_sha256": "8fbbf306aff049b57ca783ceeb019a7adf520f5722355d8936ab41f04e6cbb4a"
+    },
+    {
+      "id": "A0_SCIENCE_DESK",
+      "label": "A0 SCIENCE DESK",
+      "repository": "30 SCIENCE LAB/NEXAH-Science-Lab",
+      "branch": "codex/grid-observatory-mission-control",
+      "revision": "8dc8f18c8163bb695ec86381d22634b31c138634",
+      "dirty": true,
+      "entry": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_RESEARCH_DESK.html",
+      "entry_sha256": "c6c6b76b28112bf2b601e51ca01dcef16830fb766ccc423b6c9631a31474270b"
+    }
+  ],
+  "released_at": "2026-10-24T01:43:16.355Z"
+}
