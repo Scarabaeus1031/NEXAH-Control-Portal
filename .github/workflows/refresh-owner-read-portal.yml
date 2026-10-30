@@ -1,0 +1,85 @@
+name: Refresh Owner Read Portal
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/refresh-owner-read-portal.yml
+      - .github/scripts/portal-refresh-needed.mjs
+  workflow_dispatch:
+  repository_dispatch:
+    types: [source-updated]
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-owner-read-portal
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout portal
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout Mission Control
+        uses: actions/checkout@v4
+        with:
+          repository: Scarabaeus1031/NEXAH-Mission-Control
+          ref: codex/mission-control-status-sync
+          path: _sources/00 EXECUTIVE/NEXAH-Mission-Control
+
+      - name: Checkout NEXAH Core
+        uses: actions/checkout@v4
+        with:
+          repository: Scarabaeus1031/NEXAH
+          ref: codex/core-readme-currentness
+          path: _sources/10 NEXAH CORE/NEXAH
+
+      - name: Checkout Science Lab
+        uses: actions/checkout@v4
+        with:
+          repository: Scarabaeus1031/NEXAH-Science-Lab
+          ref: codex/grid-observatory-mission-control
+          path: _sources/30 SCIENCE LAB/NEXAH-Science-Lab
+
+      - name: Check source revisions
+        id: refresh
+        env:
+          PORTAL_REFRESH_EVENT: ${{ github.event_name }}
+        run: node .github/scripts/portal-refresh-needed.mjs
+
+      - name: Build verified read-only snapshot
+        if: steps.refresh.outputs.needed == 'true'
+        run: |
+          node "_sources/00 EXECUTIVE/NEXAH-Mission-Control/OWNER_READ_PORTAL/build_owner_read_portal.mjs"
+          node "_sources/00 EXECUTIVE/NEXAH-Mission-Control/OWNER_READ_PORTAL/verify_owner_read_portal.mjs"
+          node "_sources/00 EXECUTIVE/NEXAH-Mission-Control/OWNER_READ_PORTAL/promote_owner_read_portal.mjs" --owner-authorized
+
+      - name: Synchronize promoted release
+        if: steps.refresh.outputs.needed == 'true'
+        run: |
+          rsync -a --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='_sources/' \
+            "_sources/00 EXECUTIVE/NEXAH-Mission-Control/OWNER_READ_PORTAL/release/" ./
+
+      - name: Commit refreshed snapshot
+        if: steps.refresh.outputs.needed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- .nojekyll index.html portal-manifest.json portal.css portal.js public-cut.js "00 EXECUTIVE" "10 NEXAH CORE" "30 SCIENCE LAB"
+          if git diff --cached --quiet; then
+            echo "Verified snapshot already current."
+            exit 0
+          fi
+          git commit -m "release(portal): refresh verified source snapshots"
+          git push origin HEAD:main
