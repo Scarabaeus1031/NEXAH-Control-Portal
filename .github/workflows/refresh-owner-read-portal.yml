@@ -24,30 +24,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout portal
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Checkout Mission Control
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: Scarabaeus1031/NEXAH-Mission-Control
           ref: codex/mission-control-status-sync
           path: _sources/00 EXECUTIVE/NEXAH-Mission-Control
+          token: ${{ secrets.SOURCE_REPO_TOKEN }}
 
       - name: Checkout NEXAH Core
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: Scarabaeus1031/NEXAH
           ref: codex/core-readme-currentness
           path: _sources/10 NEXAH CORE/NEXAH
+          token: ${{ secrets.SOURCE_REPO_TOKEN }}
 
       - name: Checkout Science Lab
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: Scarabaeus1031/NEXAH-Science-Lab
           ref: codex/grid-observatory-mission-control
           path: _sources/30 SCIENCE LAB/NEXAH-Science-Lab
+          token: ${{ secrets.SOURCE_REPO_TOKEN }}
 
       - name: Check source revisions
         id: refresh
