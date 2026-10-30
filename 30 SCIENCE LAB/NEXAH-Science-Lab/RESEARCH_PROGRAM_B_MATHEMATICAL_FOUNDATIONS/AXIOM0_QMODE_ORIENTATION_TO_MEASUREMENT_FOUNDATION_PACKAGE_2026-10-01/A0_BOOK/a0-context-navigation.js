@@ -3,7 +3,7 @@
   const src = document.currentScript?.src;
   if (!src || window.self !== window.top) return;
   const map = document.createElement('script');
-  map.src = new URL('a0-orientation-map.js?v=20261023-overview-orientation-split', src).href;
+  map.src = new URL('a0-orientation-map.js?v=20261029-a0-navigator-family-map-r2', src).href;
   document.head.append(map);
 })();
 (() => {
@@ -12,6 +12,13 @@
   if (!header || !sourceNav || header.dataset.a0Context === "ready") return;
 
   const file = decodeURIComponent(location.pathname.split("/").pop() || "index.html");
+  const localOwnerContext = (location.protocol === "file:" || ["127.0.0.1", "localhost"].includes(location.hostname)) && !location.pathname.includes("/a0-human/");
+  const nexahedronPublicHref = "https://nexahedron.com/";
+  const ownerServerRoot = localOwnerContext && /^https?:$/.test(location.protocol)
+    ? "http://127.0.0.1:8766/"
+    : "../../../../../";
+  const nexahedronStagingHref = "http://127.0.0.1:3001/";
+  const nexahedronHref = localOwnerContext ? nexahedronStagingHref : nexahedronPublicHref;
   const jointChildren = {
     "A0_MATHEMATICAL_JOINTS.html": ["mathfield", "Mathfield · mathematische Werkstatt"],
     "A0_PASCAL_PENTAGON_OPERATOR_JOINTS.html": ["pascal", "Pascal / Pentagon · Operator-Faden"],
@@ -48,13 +55,18 @@
   {
     "key": "human",
     "code": "H",
-    "label": "Human",
+    "label": "NEXAHEDRON · Human",
     "description": "Drehen, entdecken und ausprobieren",
-    "entry": "A0_NEXAH_APERTURE_JOURNEY.html#human-view",
+    "entry": "https://nexahedron.com/",
     "sections": [
       {
         "label": "Beginnen",
         "items": [
+          [
+            "index.html#top",
+            "NEXAH A0 · Startseite",
+            "Zur gemeinsamen Owner-Abnahmesicht und den Häusern zurückkehren"
+          ],
           [
             "A0_TOURS.html",
             "A0 Touren · Wege & Karten",
@@ -64,6 +76,11 @@
             "A0_NEXAH_APERTURE_JOURNEY.html",
             "Aperture Journey · Human View",
             "Sieben Fragen, neun Apertures und der Human Return"
+          ],
+          [
+            "A0_OPIUM.html#entrance",
+            "OPIUM / Club",
+            "Club Machine, Relations Player und Control Room mit Rückweg zu A0 und THE MACHINA"
           ],
           [
             "A0_LOOK_AGAIN_PLAY.html",
@@ -128,9 +145,9 @@
   {
     "key": "science",
     "code": "S",
-    "label": "Science",
+    "label": "A0 · Science",
     "description": "Begriffe, Methode und Evidenz",
-    "entry": "A0_SCIENCE.html#top",
+    "entry": "A0_SCIENCE.html",
     "sections": [
       {
         "label": "Wo wir stehen · Ergebnisse & Einordnung",
@@ -320,6 +337,36 @@
         ]
       },
       {
+        "label": "A0 NSNavigator · finden und zuordnen",
+        "items": [
+          [
+            "A0_DATA_AND_REGISTERS.html#top",
+            "A0 NSNavigator · Register Lens",
+            "Welche Liste beantwortet welche Frage?"
+          ],
+          [
+            "A0_DATA_AND_REGISTERS.html#search-order",
+            "Vor einer neuen Liste",
+            "Suchen → Autorität prüfen → vorhandenen Datensatz erweitern"
+          ],
+          [
+            "A0_DATA_AND_REGISTERS.html#science-registers",
+            "Science Navigator / Source Graph",
+            "Quellen, Identitäten und typisierte Relationen"
+          ],
+          [
+            "A0_VISUAL_FIELD_LIBRARY.html",
+            "Visual Field Library",
+            "Bilder, visuelle Felder und Quellenräume"
+          ],
+          [
+            "A0_ASSET_INDEX.html",
+            "A0 Asset Index",
+            "Interner Datei- und Oberflächenindex"
+          ]
+        ]
+      },
+      {
         "label": "Instrumente · optional vertiefen",
         "items": [
           [
@@ -334,20 +381,55 @@
   {
     "key": "builder",
     "code": "B",
-    "label": "Builder",
+    "label": "A0 · Builder",
     "description": "Tools, Neuerungen und Anwendungen",
-    "entry": "../../../../../00%20EXECUTIVE/NEXAH-Mission-Control/00_OVERVIEW/BUILDER_STATUS_REPORT.html",
+    "entry": "A0_BUILDER_TOY_STORE.html#bench-page-top",
     "sections": [
       {
-        "label": "Start & Werkstätten",
+        "label": "Highlights · aktueller Build",
+        "highlight": true,
         "items": [
-          ["A0_WERKBANK.html", "Werkbank · Start", "Sechs Flagships; THE MACHINA mit vier klar getrennten Innenräumen"],
+          ["A0_TESSAREC_BLUE_BODY_LAB.html#guided-test", "01 · CARRIER / BLUE BODY", "Träger, Innenregister und kontrollierte Zustandsansichten"],
+          ["A0_PINK_DIAMOND_GRID_ATLAS.html#diamond-lens", "02 · RELATION / PINK DIAMOND", "Grid, CRT16 und fünf gebundene Relationsansichten"],
+          ["A0_BLUE_PINK_DODECA_CELL_RETURN.html#threeLissajousPlanes", "03 · COUPLING / BLUE × PINK", "Drei Lissajous-Ebenen verbinden Carrier, Zellen und Regime"],
+          ["A0_SPIN_TO_BLOOM_MEASUREMENT.html#edelweissBridge", "04 · BLOOM / EDELWEISS", "Root-Carrier, Feld, zwölf Tips und White-Dodeca-Slots in einer Kopplungsbank"],
+          ["A0_SPIN_TO_BLOOM_MEASUREMENT.html#translatorOrientationReceipt", "05 · RECEIPT / V12 TRANSLATOR", "6+6-Bank, Ratio-Bügel, RE-Exit und DO′-Return mit Negativkontrollen"],
+          ["A0_LIVING_BLUEPRINT.html#a0-map-home", "06 · RETURN / LIVING BLUEPRINT", "Family Connection Map, Status, offene Fragen und Rückweg in den Gesamtbestand"]
+        ]
+      },
+      {
+        "label": "Workbench",
+        "items": [
+          ["A0_WERKBANK.html", "Werkbank · Start", "Eine Workbench; vier Flagship Labs; mehrere begrenzte Demonstratoren"],
           ["A0_MACHINA_COCKPIT.html#benchFoyer", "THE MACHINA · Viewer", "Maschinenkörper, GLBs und ihre source-bound Fenster"],
           ["A0_MACHINA_COCKPIT.html", "THE MACHINA · Pentagon Cockpit", "Orientierungsstation für 16/17, STILL XX/20 und 18/19"],
           ["A0_ORIENTATION_CONTROLLER_BENCH.html#universalMachinePartsShelf", "THE MACHINA · Parts Shelf", "Neun checksum-identische FAM-009 Modelle"],
           ["A0_BENCH_ENTDECKEN.html", "Bench · Entdecken", "Foyer, Rundgang und visuelle Flagships"],
+          ["A0_BENCH_MODULES.html", "Bench · Module / Tool", "Einzeln bedienbare Views, Controls und Adapter"],
           ["A0_BENCH_ARBEITEN.html", "Bench · Arbeiten", "Arbeitsplatz, Tower und Return"],
-          ["A0_BENCH_QUELLEN.html", "Bench · Quellen & Prüfen", "Originale, Verträge und Records"],
+          ["A0_BENCH_QUELLEN.html", "Bench · Source / Asset", "Originale, Assets, Records und Verträge"]
+        ]
+      },
+      {
+        "label": "Demonstratoren",
+        "items": [
+          ["A0_TOWER_RETURN_DEMONSTRATOR.html", "TOWER", "q-Adresse, D°G-Witness und Return"],
+          ["A0_IOTA_BRIDGE_DEMONSTRATOR.html", "BRIDGE", "8/12-Schedule und gemeinsamer Return bei 24"],
+          ["A0_PENTAGON_CROWN_RETURN_DEMONSTRATOR.html", "CROWN", "Fünfflaschenkrone, Herzmechanismus und gebundener Return"],
+          ["A0_LANTERN_PANEL_V_CONTROL_LENS.html", "PANEL V", "147,5°-Kontrolllinse und Crown-Replay"],
+          ["A0_ROOTROOM_CODON_ORIENTATION_RETURN.html", "ROOTROOM × CODON", "Fünf Green-Cube-Anker, Triplet-Register und Ein-/Zwei-Umlauf-Return"],
+          ["A0_SPIN_TO_BLOOM_MEASUREMENT.html#kleinLamellaReturnBridge", "LAMELLA-DIAGNOSE", "Begrenzte Vergleichsansicht für Lamellen, Ebenen und lokalen Return"],
+          ["A0_BREATHING_CRYSTAL_APERTURE.html", "CRYSTAL", "X|-Apertur, Materialansichten, Fourier-Reveal und visueller Return"]
+        ]
+      },
+      {
+        "label": "Bestand & Status",
+        "items": [
+          [
+            "A0_NEXAH_RESEARCH_METHOD.html#top",
+            "NEXAH Research Method · Find the joint",
+            "Der ausführliche A0-Lesepfad von Record, Cut und View über Joint und Test bis Return"
+          ],
           [
             "A0_TOURS.html#historical-htmls",
             "A0 Touren · HTML-Bestand",
@@ -359,9 +441,14 @@
             "Welches Werkzeug macht was?"
           ],
           [
-            "../../../../../00%20EXECUTIVE/NEXAH-Mission-Control/00_OVERVIEW/BUILDER_STATUS_REPORT.html",
-            "Builder Startseite",
-            "Was ist neu? Was kann ich nutzen? Wo ist es eingebaut?"
+            "A0_LIVING_BLUEPRINT.html#open-questions",
+            "Status & offene Fragen",
+            "Read-only Rückweg zu Status, Grenzen und dem autoritativen Desk"
+          ],
+          [
+            "index.html?projection=builder-showcase",
+            "A0 Builder Home",
+            "Der lange eingefrorene Builder Showcase im bestehenden A0-Haus"
           ],
           [
             "A0_BUILDER_TOY_STORE.html",
@@ -491,6 +578,9 @@
     ]
   }
   ];
+  // A0 is the frame, not a second Human site: local work opens the current
+  // NEXAHEDRON staging application; public projections retain the live URL.
+  readerLanes[0].entry = nexahedronHref;
 
   // Editorial navigation homes, not canonical Families, source ownership or evidence admission.
   const navigationGroups = [
@@ -548,6 +638,7 @@
       {
         "title": "Quellen und vollständige Indizes",
         "pages": [
+          "A0_DATA_AND_REGISTERS.html",
           "A0_VISUAL_FIELD_LIBRARY.html",
           "A0_ASSET_INDEX.html",
           "NEXAH_C_CONNECT.html"
@@ -565,10 +656,12 @@
         "title": "Joints · Mathematik und Return",
         "pages": [
           "A0_FIELDS_AND_JOINTS_ATLAS.html",
+          "A0_ASSEMBLY_ATLAS.html",
           "A0_MATHEMATICAL_JOINTS.html",
           "A0_PASCAL_PENTAGON_OPERATOR_JOINTS.html",
           "A0_PASCAL_GENERATION_CORNER.html",
           "A0_Q4_MAGIC_SQUARE_JOINT_AUDIT.html",
+          "A0_7_11_TYPED_CROSSWALK.html",
           "A0_BOUNDARY_GRAPH_DEMONSTRATOR.html",
           "A0_JOINT_APPLICATION_DEMONSTRATOR.html",
           "A0_JARP_CROSS_LENS_EXTENSION.html",
@@ -586,6 +679,8 @@
         "title": "Körper · Faltung und Dynamik",
         "pages": [
           "A0_BLUE_PINK_DODECA_CELL_RETURN.html",
+          "A0_PENTAGON_BODY_EXHIBITION.html",
+          "A0_PENTAGON_BODY_RETURN_GUIDED.html",
           "A0_TESSAREC_BLUE_BODY_LAB.html",
           "A0_BLUE_BODY_DODECA_COUNTERSHOT.html",
           "A0_AXIS08_FOLD_RETURN_SEQUENCER.html",
@@ -602,10 +697,17 @@
           "A0_MACHINA_COCKPIT.html",
           "A0_TOWER_RETURN_DEMONSTRATOR.html",
           "A0_IOTA_BRIDGE_DEMONSTRATOR.html",
+          "A0_PENTAGON_CROWN_RETURN_DEMONSTRATOR.html",
+          "A0_LANTERN_PANEL_V_CONTROL_LENS.html",
+          "A0_ROOTROOM_CODON_ORIENTATION_RETURN.html",
+          "A0_SPIN_TO_BLOOM_MEASUREMENT.html",
+          "A0_BREATHING_CRYSTAL_APERTURE.html",
           "A0_BENCH_ENTDECKEN.html",
+          "A0_BENCH_MODULES.html",
           "A0_BENCH_ARBEITEN.html",
           "A0_BENCH_QUELLEN.html",
           "A0_ORIENTATION_CONTROLLER_BENCH.html",
+          "A0_CROWN_SHADOW_CONTACT_BENCH.html",
           "LAB_ORIENTATION_MACHINE.html",
           "A0_BUILDER_TOY_STORE.html"
         ]
@@ -629,7 +731,6 @@
       {
         "title": "Wo wir stehen",
         "pages": [
-          "NEXAH_SCIENCE.html",
           "A0_SCIENTIFIC_POSITION_REPORT.html",
           "A0_SCIENCE.html"
         ]
@@ -648,6 +749,7 @@
         "internal": true,
         "pages": [
           "A0_RESEARCH_DESK.html",
+          "A0_F_A0_26_REVIEW_PROBE.html",
           "A0_RESEARCH_BACKLOG.html",
           "A0_BUILDER_LOG.html",
           "A0_LABORATORY.html"
@@ -656,7 +758,7 @@
     ]
   }
 ];
-  const internalPages = new Set(["A0_RESEARCH_DESK.html","A0_RESEARCH_BACKLOG.html","A0_BUILDER_LOG.html","A0_LABORATORY.html"]);
+  const internalPages = new Set(["A0_RESEARCH_DESK.html","A0_F_A0_26_REVIEW_PROBE.html","A0_RESEARCH_BACKLOG.html","A0_BUILDER_LOG.html","A0_LABORATORY.html"]);
   const pageHome = navigationGroups.find(group => group.sections.some(section => section.pages.includes(file)));
   const tessarecPages = [
     "A0_TESSAREC_FRAME_ENVELOPE_OBSERVER_PAPER.html",
@@ -685,16 +787,31 @@
 
   const flatItems = (lane) => lane.items || lane.sections.flatMap((section) => section.items);
   const targetFile = (href) => decodeURIComponent(href.split(/[?#]/)[0].split("/").pop() || "");
-  const currentLane = jointChildren[file] ? readerLanes[2] : (readerLanes.find((lane) => flatItems(lane).some(([href]) => targetFile(href) === file)) || readerLanes[1]);
+  // Only mark a Reader lane current when the page is explicitly listed in it.
+  // Falling back to Science made unrelated tool/index pages look like Science
+  // homes and inverted the intended two-step interaction: enter first, then
+  // open that house's navigation on the destination page.
+  const currentLane = file === "index.html"
+    ? null
+    : jointChildren[file]
+      ? readerLanes[2]
+      : (readerLanes.find((lane) => flatItems(lane).some(([href]) => targetFile(href) === file)) || null);
   const originalLinks = [...sourceNav.querySelectorAll(":scope > a")];
   const localLinks = originalLinks.filter((link) => (link.getAttribute("href") || "").startsWith("#"));
   const contextualLinks = originalLinks.filter((link) => !(link.getAttribute("href") || "").startsWith("#"));
 
   const brand = header.querySelector(".brand") || document.createElement("a");
   brand.className = "brand a0-brand";
-  brand.href = "index.html";
-  brand.textContent = "NEXAH";
-  brand.setAttribute("aria-label", "A0 Startseite");
+  brand.href = "index.html#top";
+  brand.textContent = "NEXAH A0";
+  brand.setAttribute("aria-label", "NEXAH A0 · gemeinsames Portal");
+  brand.addEventListener("click", (event) => {
+    const target = new URL(brand.href, location.href);
+    if (target.pathname !== location.pathname || target.hash !== "#top") return;
+    event.preventDefault();
+    if (location.hash !== "#top") history.pushState(null, "", `${location.pathname}${location.search}#top`);
+    window.scrollTo(0, 0);
+  });
 
   const makeReaderLink = ([href, label, description]) => {
     const link = document.createElement("a");
@@ -704,86 +821,85 @@
     return link;
   };
 
+  // Owner acceptance uses one ecosystem-root server. This keeps every local
+  // projection stable while preserving source-relative file:// fallbacks.
+  const localWorkspaceBase = localOwnerContext && /^https?:$/.test(location.protocol)
+    ? ownerServerRoot
+    : "../../../../../";
+  // The maintained long Builder Showcase redirects standalone readers back to
+  // the A0 shell by default. `standalone=1` is intentional here: A0 already
+  // owns the calm outer frame, so both the projection and a direct fallback
+  // must render the complete Showcase instead of the shortened portal cut.
+  const builderShowcaseHref = `${localWorkspaceBase}00%20EXECUTIVE/NEXAH-Mission-Control/00_OVERVIEW/BUILDER_STATUS_REPORT.html?standalone=1#top`;
+  const builderDeskHref = `${localWorkspaceBase}10%20NEXAH%20CORE/NEXAH/BUILDER/B0_BUILDER_DECK/index.html#top`;
+  const missionControlHref = `${localWorkspaceBase}00%20EXECUTIVE/NEXAH-Mission-Control/INTERNAL_NAVIGATOR/index.html#top`;
+  if (localOwnerContext && /^https?:$/.test(location.protocol)) {
+    document.querySelectorAll?.("a[href]").forEach((link) => {
+      const href = link.getAttribute("href") || "";
+      if (href.startsWith("../../../../../")) link.href = `${localWorkspaceBase}${href.slice("../../../../../".length)}`;
+    });
+  }
   // Each lane gets its own invitation. Human is experience-led; Builder keeps the workshop.
   const humanShowcase = [
     ["a0-public-arkade-index.html#arkade", "ARKADE", "ONE PULSE und drei spielbare Welten direkt erleben", "arcade", "Play · Consumer View"],
     ["A0_OPIUM.html", "OPIUM / Club", "Club Machine, Relations Player und Control Room als ein bestehendes Erlebnis-Ensemble", "book", "Club · Human Flagship"],
     ["A0_LOOK_AGAIN_PLAY.html", "LOOK AGAIN", "Fünf Wahrnehmungsvergleiche: gleiche Quelle, andere sichtbare Relation", "cells", "Perception · Human Game"]
   ];
+  // The long Builder Home remains the existing source-bound A0 projection.
+  // Keep one identity and one maintained source; do not mint a second A0 copy.
+  const builderShowcaseHome = ["index.html?projection=builder-showcase", "A0 Builder Home", "What can we build now? Der lange Builder Showcase mit Bestand, Anwendungen, Werkzeugwand und Grenzen", "nexah", "A0 · Builder Home"];
   const builderShowcase = [
-    ["A0_WERKBANK.html", "Werkbank", "Maschine, Entdecken, Arbeiten und Quellen & Prüfen", "body", "Builder Flagship"],
-    ["A0_MACHINA_COCKPIT.html#benchFoyer", "THE MACHINA", "Eigener Viewer, Cockpit, Parts Shelf und Full Bench", "body", "Maschinenhaus"],
-    ["A0_BUILDER_TOY_STORE.html", "Toy Store", "Werkzeuge entdecken und direkt ausprobieren", "toys", "Werkzeug-Einstieg"]
+    builderShowcaseHome,
+    ["A0_MACHINA_COCKPIT.html#benchFoyer", "THE MACHINA", "Eigener Viewer, Cockpit, Parts Shelf und Full Bench", "body", "Haus / Host"],
+    ["A0_WERKBANK.html", "Werkbank", "Maschine, Entdecken, Arbeiten und Quellen & Prüfen", "body", "Arbeitsoberfläche"]
+  ];
+  const builderCurrentFlagship =
+    ["A0_SPIN_TO_BLOOM_MEASUREMENT.html#edelweissBridge", "EDELWEISS", "Root → Field → Bloom → Dodeca → Receipt: die integrierende Kopplungsbank", "edelweiss", "CURRENT FLAGSHIP"];
+  const builderFlagshipConstellation = [
+    ["A0_MATHEMATICAL_JOINTS.html", "MATHEMATICAL JOINTS", "Formale Relationen, Operatoren, Tests und Claim-Grenzen", "mathfield"],
+    ["A0_BLUE_PINK_DODECA_CELL_RETURN.html#module-entry", "BLUE × PINK", "Gekoppelter Träger, Zellenregister und typisierte Returns", "coupling"],
+    ["A0_TESSAREC_BLUE_BODY_LAB.html#module-entry", "BLUE BODY", "Carrier, Innenregister und kontrollierte Zustände", "carrier"],
+    ["A0_PINK_DIAMOND_GRID_ATLAS.html#module-entry", "PINK DIAMOND", "Ein Carrier, mehrere gebundene Relationsansichten", "relation"],
+    ["A0_GAME_OF_WORLDS_PLAY.html?world=pulse#pulse", "GAME OF WORLDS", "Human View: das System als spielbare Zustandsoberfläche", "human"]
   ];
   const scienceHighlights = [
-    ["NEXAH_SCIENCE.html#overview", "NEXAH Science", "Forschungsfelder, Library, Programme, Ergebnisse und Quellen im Gesamtüberblick", "nexah", "Flagship · Gesamtforschung"],
-    ["A0_MATHEMATICAL_JOINTS.html", "Mathfield", "Mathematische Werkstatt für Buchstellen, Träger, Linsen, Fugen und ihre prüfbaren Returns", "cells", "Flagship · Mathematical Joints"]
+    ["A0_SCIENCE.html#top", "A0 Science · Reader", "Forschungsstand, Beiträge, Instrumente und Grenzen des gebundenen A0-Programms", "nexah", "Intern · source-bound Reader"],
+    ["A0_MATHEMATICAL_JOINTS.html", "Mathfield", "Mathematische Werkstatt für Buchstellen, Träger, Linsen, Fugen und ihre prüfbaren Returns", "cells", "Flagship · Mathematical Joints"],
+    ["A0_DATA_AND_REGISTERS.html#top", "A0 NSNavigator", "A0-Struktur binden, zuständige Register finden und vorhandene Records weiterverwenden", "book", "Science · Source-bound Register Lens"]
   ];
   const laneNav = document.createElement("nav");
   laneNav.className = "a0-reader-lanes";
-  laneNav.setAttribute("aria-label", "Reader nach Perspektive · Werkbank");
-  brand.setAttribute("aria-label", "NEXAH · A0 Startseite");
-  const benchMenu = {
-    key: "bench", code: "Werkstatt", label: "Werkbank",
-    entry: "A0_WERKBANK.html",
-    description: "Start · THE MACHINA · Blue Body · Pink Body · Tower · Bridge",
-    sections: [
-      { label: "00 · Start & THE MΛCHINΛ", items: [
-        ["A0_WERKBANK.html", "Werkbank · Start", "Orientieren und einen Arbeitsweg wählen"],
-        ["A0_MACHINA_COCKPIT.html#benchFoyer", "THE MΛCHINΛ · Viewer", "Maschinenkörper und GLBs als visueller Haupteinstieg"],
-        ["A0_MACHINA_COCKPIT.html", "THE MΛCHINΛ · Pentagon Cockpit", "Lokale Rollen um den deklarierten STILL-Pin XX/20"],
-        ["A0_ORIENTATION_CONTROLLER_BENCH.html#universalMachinePartsShelf", "THE MΛCHINΛ · Parts Shelf", "Neun FAM-009 Modelle einzeln prüfen"],
-        ["A0_ORIENTATION_CONTROLLER_BENCH.html#benchWorkDesk", "THE MΛCHINΛ · Full Bench", "Instrumente und Anschlüsse bedienen"]
-      ]},
-      { label: "Räume · Bodies & Returns", items: [
-        ["A0_TESSAREC_BLUE_BODY_LAB.html#guided-test", "BLUE BODY", "Carrier, Innenraum und Zustandsansichten"],
-        ["A0_PINK_DIAMOND_GRID_ATLAS.html#diamond-lens", "PINK DIAMOND", "Ein Carrier · fünf Views · Grid und CRT16 als Werkzeuge"],
-        ["A0_TOWER_RETURN_DEMONSTRATOR.html", "TOWER", "q-Adresse, D°G-Witness und Return"],
-        ["A0_IOTA_BRIDGE_DEMONSTRATOR.html", "BRIDGE", "8/12-Schedule und gemeinsamer Return bei 24"]
-      ]},
-      { label: "01 · Entdecken", items: [
-        ["A0_BENCH_ENTDECKEN.html", "Entdecken · Einstieg", "Rundgang und visuelle Instrumente"],
-        ["A0_MACHINA_COCKPIT.html#benchFoyer", "THE MACHINA Viewer", "Die Maschinenansichten kennenlernen"],
-        ["A0_ORIENTATION_CONTROLLER_BENCH.html#foyerDoors", "Alle Werkzeuge / Suche", "Den passenden Zugang wählen"]
-      ]},
-      { label: "02 · Arbeiten", items: [
-        ["A0_BENCH_ARBEITEN.html", "Arbeiten · Einstieg", "Instrumente und Anschlüsse"],
-        ["A0_ORIENTATION_CONTROLLER_BENCH.html#benchWorkDesk", "Arbeitsplatz / Binder", "Lokale Lesepfade einzeln prüfen"],
-        ["A0_ORIENTATION_CONTROLLER_BENCH.html#anuTowerWorkbench", "Tower / ANU", "Sichtbarkeit lesen · Transport offen"],
-        ["A0_ORIENTATION_CONTROLLER_BENCH.html#pulseBenchMonitor", "ONE PULSE", "Separater Anschluss · kein automatisches Play"],
-        ["A0_ORIENTATION_CONTROLLER_BENCH.html#carrierReturnWorkbench", "CRT / Return / Ghost", "Adressen und Rückwege vergleichen"]
-      ]},
-      { label: "03 · Quellen & Prüfen", items: [
-        ["A0_BENCH_QUELLEN.html", "Quellen & Prüfen · Einstieg", "Originale, Verträge und Records"],
-        ["A0_ORIENTATION_CONTROLLER_BENCH.html#nativeSourceBank", "Originalquellen", "Quelleneigene Sitzungen bleiben erhalten"],
-        ["A0_ORIENTATION_CONTROLLER_BENCH.html#benchSetupDrawer", "Technik & Verträge", "Offene Anschlüsse nachschlagen"]
-      ]}
-    ]
-  };
-  const benchHighlights = [
-    ["A0_MACHINA_COCKPIT.html#benchFoyer", "THE MACHINA", "Viewer · Maschinenkörper · GLBs · vier klare Räume", "body", "Viewer"],
-    ["A0_TESSAREC_BLUE_BODY_LAB.html#guided-test", "Blue Body", "Carrier, Innenraum und Zustandsadressen", "body", "Body"],
-    ["A0_PINK_DIAMOND_GRID_ATLAS.html#diamond-lens", "Pink Diamond", "Yellow, Emerald Shadow, Rainbow, Root/Shell und Evil Twin", "cells", "Diamond Lens"]
-  ];
-  // Bench is a tool area, not a fourth Reader perspective.
-  [...readerLanes, benchMenu].forEach((lane) => {
-    const isBench = lane.key === "bench";
+  laneNav.setAttribute("aria-label", "Reader nach Perspektive");
+  brand.setAttribute("aria-label", "NEXAH A0 · gemeinsames Portal");
+  // Werkbank is a Builder room, not an additional Reader perspective. Data
+  // and registers belong to Science as a source-bound navigation section.
+  readerLanes.filter((lane) => lane.key !== "human").forEach((lane) => {
+    const laneIsCurrent = lane === currentLane;
     const group = document.createElement("details");
     group.className = `a0-reader-lane a0-reader-lane--${lane.key}`;
-    if (isBench ? ["A0_WERKBANK.html","A0_MACHINA_COCKPIT.html","A0_IOTA_BRIDGE_DEMONSTRATOR.html","A0_TOWER_RETURN_DEMONSTRATOR.html","A0_ORIENTATION_CONTROLLER_BENCH.html"].includes(file) || file.startsWith("A0_BENCH_") : lane === currentLane) group.dataset.current = "true";
+    group.dataset.lane = lane.key;
+    if (laneIsCurrent) group.dataset.current = "true";
     const summary = document.createElement("summary");
-    summary.innerHTML = `<strong>${lane.label}</strong><i aria-hidden="true"></i>`;
-    summary.setAttribute("aria-label", isBench ? "Werkbank-Menü öffnen" : `${lane.label} Reader öffnen`);
+    summary.innerHTML = lane.key === "builder"
+      ? '<svg class="a0-builder-scarab" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="4" r="2.2"/><path d="M16 7c-4.2 0-6.5 3.2-6.5 7.7V20c0 4.5 2.3 7 6.5 9 4.2-2 6.5-4.5 6.5-9v-5.3C22.5 10.2 20.2 7 16 7Z"/><path d="M10 11C5.8 8.7 2.7 11 3.5 15.2c.7 3.6 3.1 5.8 6 6.2M22 11c4.2-2.3 7.3 0 6.5 4.2-.7 3.6-3.1 5.8-6 6.2M10 15H5M22 15h5M10 20l-5 3M22 20l5 3M13 8 9 4M19 8l4-4M10 24l-3 4M22 24l3 4"/></svg><strong>A0 · Builder</strong><i aria-hidden="true"></i>'
+      : `<strong>${lane.label}</strong><i aria-hidden="true"></i>`;
+    summary.setAttribute("aria-label", laneIsCurrent ? `${lane.label} Navigation öffnen` : `${lane.label} öffnen`);
+    if (!laneIsCurrent && lane.key !== "builder") {
+      if (lane.key === "human") summary.setAttribute("data-a0-nexahedron", "");
+      summary.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (lane.key !== "human") window.location.href = lane.entry;
+      });
+    }
     const panel = document.createElement("div");
     panel.className = "a0-reader-panel";
-    panel.innerHTML = `<header><a class="a0-reader-home" href="${lane.entry}"><span>${isBench ? "A0 · Werkstatt" : lane.code + " · Reader"}</span><strong>${isBench ? "Zur Werkstatt →" : "Zum " + lane.label + " →"}</strong><small>${lane.description}</small></a></header>`;
     const sections = lane.sections || [{ label: "Reader", items: lane.items }];
     const grid = document.createElement("div");
     grid.className = "a0-reader-sections";
     sections.forEach((section) => {
       const folded = section.items.length > 6;
       const list = document.createElement(folded ? "details" : "section");
-      list.className = section.compact ? "a0-reader-section is-compact" : "a0-reader-section";
+      list.className = `a0-reader-section${section.compact ? " is-compact" : ""}${section.highlight ? " is-highlight" : ""}`;
       list.innerHTML = folded ? `<summary>${section.label} · ${section.items.length} Ziele</summary>` : `<h3>${section.label}</h3>`;
       section.items.forEach((item) => list.append(makeReaderLink(item)));
       grid.append(list);
@@ -793,28 +909,55 @@
     const showcase = document.createElement("section");
     showcase.className = "a0-showcase";
     const isScience = lane.key === "science", isHuman = lane.key === "human";
-    showcase.setAttribute("aria-label", isBench ? "Bench · Flagships" : isScience ? "Science · Stand und Beiträge" : isHuman ? "Human Experience · direkt erleben" : "Builder · direkt ausprobieren");
-    showcase.innerHTML = isBench
-      ? '<h3>Flagships</h3><p>Drei direkte Zugänge in die Werkstatt.</p>'
-      : isScience
-      ? '<h3>Stand & Beiträge</h3><p>Was trägt — und wo die Grenzen liegen.</p>'
+    showcase.setAttribute("aria-label", isScience ? "Science · Stand, Daten und Beiträge" : isHuman ? "Human Experience · direkt erleben" : "Builder · direkt ausprobieren");
+    showcase.innerHTML = isScience
+      ? '<h3>Stand, Daten & Beiträge</h3><p>Was trägt, wo es liegt — und wo die Grenzen liegen.</p>'
       : isHuman
         ? '<span class="a0-human-signal">HUMAN VIEW · FLAGSHIPS</span><h3>Enter the living view.</h3><p>Nicht nur lesen: drehen, berühren, spielen und mit einem anderen Blick zurückkehren.</p>'
         : '<h3>Werkzeugfenster</h3><p>Bauen, prüfen und Instrumente direkt öffnen.</p>';
-    const highlights = isBench ? benchHighlights : isScience ? scienceHighlights : isHuman ? humanShowcase : builderShowcase;
+    const highlights = isScience ? scienceHighlights : isHuman ? humanShowcase : builderShowcase;
     highlights.forEach(([href, label, description, accent, status]) => {
+      const card = document.createElement("a");
+      card.className = `a0-showcase-card a0-showcase-card--${accent}`;
+      card.href = href;
+      if (href === builderShowcaseHref) card.setAttribute("data-a0-builder-showcase", "");
+      card.innerHTML = `<span class="a0-showcase-art" aria-hidden="true"></span><span class="a0-showcase-copy"><small>${status}</small><strong>${label} <span aria-hidden="true">↗</span></strong><span>${description}</span></span>`;
+      if (targetFile(href) === file) card.setAttribute("aria-current", "page");
+      showcase.append(card);
+    });
+    let currentFlagship = null;
+    let constellation = null;
+    if (lane.key === "builder") {
+      currentFlagship = document.createElement("section");
+      currentFlagship.className = "a0-current-flagship";
+      currentFlagship.setAttribute("aria-label", "Current Flagship · Edelweiß");
+      const [href, label, description, accent, status] = builderCurrentFlagship;
       const card = document.createElement("a");
       card.className = `a0-showcase-card a0-showcase-card--${accent}`;
       card.href = href;
       card.innerHTML = `<span class="a0-showcase-art" aria-hidden="true"></span><span class="a0-showcase-copy"><small>${status}</small><strong>${label} <span aria-hidden="true">↗</span></strong><span>${description}</span></span>`;
       if (targetFile(href) === file) card.setAttribute("aria-current", "page");
-      showcase.append(card);
-    });
+      currentFlagship.append(card);
+
+      constellation = document.createElement("section");
+      constellation.className = "a0-flagship-constellation";
+      constellation.setAttribute("aria-label", "Flagship Constellation");
+      constellation.innerHTML = '<h3>Flagship Constellation</h3><p>Fünf große Arbeitsräume — je einmal als Hauptkarte.</p>';
+      builderFlagshipConstellation.forEach(([route, name, copy, role]) => {
+        const link = document.createElement("a");
+        link.className = `a0-constellation-card a0-constellation-card--${role}`;
+        link.href = route;
+        link.innerHTML = `<small>${role}</small><strong>${name}</strong><span>${copy}</span>`;
+        if (targetFile(route) === file) link.setAttribute("aria-current", "page");
+        constellation.append(link);
+      });
+    }
     const reading = document.createElement("section");
     reading.className = "a0-reader-reading";
-    reading.innerHTML = isBench ? '<h3>Die Werkstatt</h3><p>Drei Bereiche · bestehende Instrumente und Quellen</p>' : '<h3>Verstehen & vertiefen</h3><p>Lesepfade, Theorie und Hintergründe</p>';
+    reading.innerHTML = '<h3>Verstehen & vertiefen</h3><p>Lesepfade, Theorie und Hintergründe</p>';
     reading.append(grid);
-    layout.append(showcase, reading);
+    if (lane.key === "builder") layout.append(showcase, currentFlagship, constellation, reading);
+    else layout.append(showcase, reading);
     panel.append(layout);
     group.append(summary, panel);
     group.addEventListener("toggle", () => {
@@ -823,19 +966,78 @@
     });
     laneNav.append(group);
   });
-
+  const workbenchEntry = document.createElement("details");
+  workbenchEntry.className = "a0-workbench-entry";
+  const workbenchSummary = document.createElement("summary");
+  workbenchSummary.innerHTML = '<svg class="a0-machina-mark" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="16" rx="10.5" ry="13"/><ellipse cx="16" cy="16" rx="5.5" ry="13"/><path d="M16 3v26"/></svg><strong>THE MACHINA</strong><i aria-hidden="true"></i>';
+  workbenchSummary.setAttribute("aria-label", "THE MACHINA · Räume und Werkbank öffnen");
+  const machinaRooms = [
+    ["A0_WERKBANK.html#bench-page-top", "WERKBANK · START", "Hausübersicht, Produktionskette und Bestand"],
+    ["A0_MACHINA_COCKPIT.html#benchFoyer", "01 · VIEWER", "Maschinenkörper, GLBs und source-bound Fenster"],
+    ["A0_MACHINA_COCKPIT.html#machinaCockpitTitle", "02 · COCKPIT", "Rollen, Orientierung und Zustände"],
+    ["A0_ORIENTATION_CONTROLLER_BENCH.html#universalMachinePartsShelf", "03 · PARTS SHELF", "Modelle, Bauteile und Adapter"],
+    ["A0_ORIENTATION_CONTROLLER_BENCH.html#benchWorkDesk", "04 · FULL BENCH", "Verbinden, prüfen und Returns lesen"]
+  ];
+  const machinaMenu = document.createElement("nav");
+  machinaMenu.className = "a0-machina-menu";
+  machinaMenu.setAttribute("aria-label", "THE MACHINA Räume");
+  machinaRooms.forEach((room) => machinaMenu.append(makeReaderLink(room)));
+  workbenchEntry.append(workbenchSummary, machinaMenu);
+  const workbenchFiles = new Set([
+    "A0_WERKBANK.html", "A0_MACHINA_COCKPIT.html", "A0_ORIENTATION_CONTROLLER_BENCH.html",
+    "A0_BENCH_ENTDECKEN.html", "A0_BENCH_MODULES.html", "A0_BENCH_ARBEITEN.html", "A0_BENCH_QUELLEN.html",
+    "A0_TESSAREC_BLUE_BODY_LAB.html", "A0_PINK_DIAMOND_GRID_ATLAS.html",
+    "A0_BLUE_PINK_DODECA_CELL_RETURN.html", "A0_TOWER_RETURN_DEMONSTRATOR.html",
+    "A0_IOTA_BRIDGE_DEMONSTRATOR.html", "A0_PENTAGON_CROWN_RETURN_DEMONSTRATOR.html",
+    "A0_LANTERN_PANEL_V_CONTROL_LENS.html", "A0_ROOTROOM_CODON_ORIENTATION_RETURN.html", "A0_SPIN_TO_BLOOM_MEASUREMENT.html",
+    "A0_BREATHING_CRYSTAL_APERTURE.html"
+  ]);
+  if (workbenchFiles.has(file)) workbenchEntry.dataset.current = "true";
+  workbenchEntry.addEventListener("toggle", () => {
+    if (!workbenchEntry.open) return;
+    laneNav.querySelectorAll("details[open]").forEach((other) => { if (other !== workbenchEntry) other.open = false; });
+  });
+  laneNav.append(workbenchEntry);
+  const registerEntry = document.createElement("a");
+  registerEntry.className = "a0-register-entry";
+  registerEntry.href = "A0_DATA_AND_REGISTERS.html#top";
+  registerEntry.innerHTML = "<strong>A0 · NSNavigator</strong>";
+  registerEntry.setAttribute("aria-label", "A0 NSNavigator · Quellen, Relationen, Register und autoritative Rückwege öffnen");
+  if (file === "A0_DATA_AND_REGISTERS.html") registerEntry.setAttribute("aria-current", "page");
+  laneNav.append(registerEntry);
+  const publicChannels = document.createElement("span");
+  publicChannels.className = "a0-public-channels";
+  publicChannels.setAttribute("aria-label", "Öffentliche NEXAH Channels");
+  const nexahedronPublic = document.createElement("a");
+  nexahedronPublic.href = "https://nexahedron.com/";
+  nexahedronPublic.target = "_blank";
+  nexahedronPublic.rel = "noopener noreferrer";
+  nexahedronPublic.textContent = "nexahedron ↗";
+  const nexahPublic = document.createElement("a");
+  nexahPublic.href = "https://nexah.de/";
+  nexahPublic.target = "_blank";
+  nexahPublic.rel = "noopener noreferrer";
+  nexahPublic.textContent = "nexah.de ↗";
+  const scarabaeusPublic = document.createElement("a");
+  scarabaeusPublic.href = "https://www.scarabaeus1033.net/";
+  scarabaeusPublic.target = "_blank";
+  scarabaeusPublic.rel = "noopener noreferrer";
+  scarabaeusPublic.textContent = "scarabæus1033 ↗";
+  publicChannels.append(nexahedronPublic, nexahPublic, scarabaeusPublic);
+  laneNav.append(publicChannels);
   const overview = document.createElement("details");
   overview.className = "a0-page-menu a0-overview-menu";
+  overview.id = "a0-navigator";
   const overviewSummary = document.createElement("summary");
-  overviewSummary.textContent = "Übersicht";
-  overviewSummary.setAttribute("aria-label", "Übersicht · Bereiche und Seiteninhalt");
+  overviewSummary.textContent = "A0 Navigator";
+  overviewSummary.setAttribute("aria-label", "A0 Navigator · Bereiche, Karten und Seiteninhalt");
   const overviewBody = document.createElement("div");
   overviewBody.className = "a0-page-menu-body a0-overview-body";
   const actions = {book:"Lesen",map:"Zusammenhänge verstehen",workshops:"Werkzeuge nutzen",desk:"Ergebnisse einordnen"};
   const currentWays = document.createElement("section");
   currentWays.className = "a0-overview-current";
-  currentWays.innerHTML = '<header><div><small>ÜBERSICHT · FÜNF EINSTIEGE</small><h3>Fünf Eingänge. Ein Werk.</h3></div><p>Wähle den Blick, der zu deiner Frage passt. Die technische Orientierungsmap bleibt getrennt und zeigt Quellen, Anschlüsse, Ansichten und Return.</p></header><nav aria-label="Fünf A0-Einstiege">'+overviewWays.map(way => '<a href="'+way.href+'" style="--way-accent:'+way.accent+'"'+(targetFile(way.href)===file?' aria-current="page"':'')+'><small>'+way.code+'</small><strong>'+way.title+'</strong><span>'+way.copy+'</span><em>'+(targetFile(way.href)===file?'DU BIST HIER':'ÖFFNEN ↗')+'</em></a>').join('')+'</nav>';
-  overviewBody.innerHTML = '<section class="a0-overview-actions"><h3>Was möchtest du tun?</h3>'+navigationGroups.map(group => '<a href="'+group.entry+'"><strong>'+actions[group.key]+'</strong><span>'+group.title+'</span></a>').join('')+'</section><details class="a0-overview-cluster" open><summary><span>Orientieren &amp; vollständig suchen</span><small>Karten, Families und alle A0-Seiten</small></summary><div><a href="A0_LIVING_BLUEPRINT.html#a0-map-home">Technische Orientierungsmap</a><a href="index.html#a0-navigation-directory">Alle A0-Seiten nach Themen</a><a href="A0_FAMILY_CONNECTION_ATLAS.html">F1–F7 · funktionale Families</a><a href="NEXAH_C_CONNECT.html">C · Connect</a></div></details>';
+  currentWays.innerHTML = '<header><div><small>A0 NAVIGATOR · FÜNF EINSTIEGE</small><h3>Fünf Eingänge. Ein Werk.</h3></div><p>Wähle den Blick, der zu deiner Frage passt. Die Family Connection Map bleibt als technische Karte getrennt und zeigt Quellen, Joints, Adapter, Ansichten und Return.</p></header><nav aria-label="Fünf A0-Einstiege">'+overviewWays.map(way => '<a href="'+way.href+'" style="--way-accent:'+way.accent+'"'+(targetFile(way.href)===file?' aria-current="page"':'')+'><small>'+way.code+'</small><strong>'+way.title+'</strong><span>'+way.copy+'</span><em>'+(targetFile(way.href)===file?'DU BIST HIER':'ÖFFNEN ↗')+'</em></a>').join('')+'</nav>';
+  overviewBody.innerHTML = '<section class="a0-overview-actions"><h3>Was möchtest du tun?</h3>'+navigationGroups.map(group => '<a href="'+group.entry+'"><strong>'+actions[group.key]+'</strong><span>'+group.title+'</span></a>').join('')+'</section><details class="a0-overview-cluster" open><summary><span>Orientieren &amp; vollständig suchen</span><small>Häuser, Touren, Karten, Families und alle A0-Seiten</small></summary><div><a href="index.html?projection=builder-showcase">A0 Builder Home</a><a href="A0_WERKBANK.html#bench-page-top">Werkbank · Start</a><a href="A0_BENCH_ENTDECKEN.html#bench-page-top">Entdecken · Tour</a><a href="A0_LIVING_BLUEPRINT.html">Living Blueprint · Tour</a><a href="A0_BENCH_ENTDECKEN.html#body-exhibition">Workbench Map</a><a href="A0_LIVING_BLUEPRINT.html#a0-map-home">Family Connection Map</a><a href="index.html#a0-navigation-directory">Alle A0-Seiten nach Themen</a><a href="A0_FAMILY_CONNECTION_ATLAS.html">F1–F7 · funktionale Families</a><a href="NEXAH_C_CONNECT.html">C · Connect</a></div></details>';
   overviewBody.prepend(currentWays);
   const addContext = (label, links, expanded = false) => {
     if (!links.length) return;
@@ -860,34 +1062,255 @@
   overview.append(overviewSummary, overviewBody);
   overview.addEventListener("toggle", () => {if(overview.open)laneNav.querySelectorAll(".a0-reader-lane[open]").forEach(group=>{group.open=false;});});
   laneNav.addEventListener("toggle", event => {if(event.target.matches?.(".a0-reader-lane[open]"))overview.open=false;},true);
-  const connectLink = document.createElement("a");
-  connectLink.className = "a0-connect-link";
-  connectLink.href = "NEXAH_C_CONNECT.html";
-  connectLink.textContent = "C";
-  connectLink.setAttribute("aria-label", "C · Connect öffnen");
-  connectLink.title = "C · Connect";
-  if (file === "NEXAH_C_CONNECT.html") connectLink.setAttribute("aria-current", "page");
-  const scarabaeusLink = document.createElement("a");
-  scarabaeusLink.className = "a0-scarabaeus-link";
-  const localOwnerContext = location.protocol === "file:" || ["127.0.0.1", "localhost"].includes(location.hostname);
-  scarabaeusLink.href = localOwnerContext ? "A0_RESEARCH_DESK.html" : "https://www.scarabaeus1033.net";
-  if (!localOwnerContext) {
-    scarabaeusLink.target = "_blank";
-    scarabaeusLink.rel = "noopener noreferrer";
+  const scarabaeusA0Href = "A0_BUILDER_TOY_STORE.html?edition=scarabaeus";
+  // NEXAH owns its routes. A0 embeds the stable Staging root and never maps
+  // individual public pages into a second A0 route tree.
+  const ownerFrameParams = new URLSearchParams(location.search);
+  const requestedNexahOrigin = ownerFrameParams.get("nexah-origin");
+  const nexahStagingHref = (() => {
+    if (!requestedNexahOrigin) return "http://127.0.0.1:4322/#top";
+    try {
+      const candidate = new URL(requestedNexahOrigin);
+      const allowedPorts = new Set(["4321", "4322", "4325", "4326"]);
+      return candidate.protocol === "http:" && candidate.hostname === "127.0.0.1" && allowedPorts.has(candidate.port)
+        ? `${candidate.origin}/#top`
+        : "http://127.0.0.1:4322/#top";
+    } catch {
+      return "http://127.0.0.1:4322/#top";
+    }
+  })();
+  const requestedNexahPath = ownerFrameParams.get("nexah-path");
+  const nexahProjectionHref = (() => {
+    if (!requestedNexahPath) return nexahStagingHref;
+    try {
+      const stagingOrigin = new URL(nexahStagingHref).origin;
+      const requested = new URL(requestedNexahPath, stagingOrigin);
+      return requested.origin === stagingOrigin ? requested.href : nexahStagingHref;
+    } catch {
+      return nexahStagingHref;
+    }
+  })();
+  const workspaceOverview = document.createElement("nav");
+  workspaceOverview.className = "a0-workspace-overviews";
+  workspaceOverview.setAttribute("aria-label", "Arbeitsübersichten");
+  let scienceDeskLink = null;
+  let builderDeskLink = null;
+  let missionControlLink = null;
+  if (localOwnerContext) {
+    scienceDeskLink = document.createElement("a");
+    scienceDeskLink.className = "a0-workspace-icon a0-science-desk-link";
+    scienceDeskLink.href = "A0_RESEARCH_DESK.html?desk=research&rev=desk-top-r2#top";
+    scienceDeskLink.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10"/><circle cx="16" cy="16" r="3"/><path d="M16 3v5M16 24v5M3 16h5M24 16h5M7 7l4 4M21 21l4 4M25 7l-4 4M11 21l-4 4"/></svg><span class="a0-workspace-label">Science Desk</span>';
+    scienceDeskLink.setAttribute("aria-label", "Science Desk · Status, Methoden, Daten, Register und Evidenz");
+    scienceDeskLink.title = "Science Desk · Daten & Register";
+    builderDeskLink = document.createElement("a");
+    builderDeskLink.className = "a0-workspace-icon a0-builder-desk-link";
+    builderDeskLink.href = builderDeskHref;
+    builderDeskLink.innerHTML = '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="4" r="2.2"/><path d="M16 7c-4.2 0-6.5 3.2-6.5 7.7V20c0 4.5 2.3 7 6.5 9 4.2-2 6.5-4.5 6.5-9v-5.3C22.5 10.2 20.2 7 16 7Z"/><path d="M10 11C5.8 8.7 2.7 11 3.5 15.2c.7 3.6 3.1 5.8 6 6.2M22 11c4.2-2.3 7.3 0 6.5 4.2-.7 3.6-3.1 5.8-6 6.2M10 15H5M22 15h5M10 20l-5 3M22 20l5 3"/></svg><span class="a0-workspace-label">Builder Desk</span>';
+    builderDeskLink.setAttribute("aria-label", "Builder Desk · Bestand, Build-Plan und Werkzeuge");
+    builderDeskLink.title = "Builder Desk";
+    workspaceOverview.append(scienceDeskLink, builderDeskLink);
+    missionControlLink = document.createElement("a");
+    missionControlLink.className = "a0-workspace-icon a0-mission-control-link";
+    missionControlLink.href = missionControlHref;
+    missionControlLink.innerHTML = '<span class="a0-workspace-monogram" aria-hidden="true">TH</span><span class="a0-workspace-label">Mission Control</span>';
+    missionControlLink.setAttribute("aria-label", "TH · Mission Control · Strategie und Owner-Steuerung");
+    missionControlLink.title = "TH · Mission Control";
+    workspaceOverview.append(missionControlLink);
   }
-  scarabaeusLink.innerHTML = '<svg class="a0-owner-scarab" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="4" r="2.2"/><path d="M16 7c-4.2 0-6.5 3.2-6.5 7.7V20c0 4.5 2.3 7 6.5 9 4.2-2 6.5-4.5 6.5-9v-5.3C22.5 10.2 20.2 7 16 7Z"/><path d="M10 11C5.8 8.7 2.7 11 3.5 15.2c.7 3.6 3.1 5.8 6 6.2M22 11c4.2-2.3 7.3 0 6.5 4.2-.7 3.6-3.1 5.8-6 6.2M10 15H5M22 15h5M10 20l-5 3M22 20l5 3M13 8 9 4M19 8l4-4M10 24l-3 4M22 24l3 4"/></svg>';
-  scarabaeusLink.setAttribute("aria-label", localOwnerContext ? "Owner · A0 Science Desk öffnen" : "Scarabäus 1033 · Website öffnen");
-  scarabaeusLink.title = localOwnerContext ? "Owner · A0 Science Desk" : "Scarabäus 1033 · www.scarabaeus1033.net";
-  header.replaceChildren(brand, laneNav, connectLink, overview, scarabaeusLink);
+  header.replaceChildren(brand, laneNav, workspaceOverview, overview);
   header.className = "top a0-context-ready a0-context-compact";
-  header.dataset.a0Lane = currentLane.key;
+  header.dataset.a0Lane = currentLane?.key || "portal";
   header.dataset.a0Context = "ready";
+  const syncContextHeaderHeight = () => {
+    if (typeof header.getBoundingClientRect !== "function") return;
+    const height = Math.ceil(header.getBoundingClientRect().height);
+    if (height > 0) document.documentElement?.style?.setProperty("--a0-context-header-height", `${height}px`);
+  };
+  syncContextHeaderHeight();
+  if (typeof window.ResizeObserver === "function") new window.ResizeObserver(syncContextHeaderHeight).observe(header);
+  else window.addEventListener("resize", syncContextHeaderHeight);
+  if (document.body) {
+    const siteProjections = [];
+    const siteProjectionTriggers = [];
+    const requestedProjection = new URLSearchParams(location.search).get("projection");
+    const setProjectedLane = (laneKey = "") => {
+      laneNav.querySelectorAll(".a0-reader-lane").forEach((group) => {
+        if (group.dataset.current === "true") {
+          if (laneKey) group.dataset.projectionObscured = "true";
+          else delete group.dataset.projectionObscured;
+        }
+        if (group.dataset.lane === laneKey) group.dataset.projectionCurrent = "true";
+        else delete group.dataset.projectionCurrent;
+      });
+      if (laneKey) header.dataset.a0ProjectedLane = laneKey;
+      else delete header.dataset.a0ProjectedLane;
+      // A projection temporarily owns the visible context. Preserve the
+      // underlying THE MACHINA return state without showing two active pills.
+      if (laneKey && workbenchEntry.getAttribute("aria-current") === "page") {
+        workbenchEntry.dataset.a0ReturnCurrent = "page";
+        workbenchEntry.removeAttribute("aria-current");
+      } else if (!laneKey && workbenchEntry.dataset.a0ReturnCurrent === "page") {
+        workbenchEntry.setAttribute("aria-current", "page");
+        delete workbenchEntry.dataset.a0ReturnCurrent;
+      }
+    };
+    const mountSiteProjection = ({ href, label, title, triggers, route, lane, refreshOnOpen = false, returnMessage = "" }) => {
+      const projection = document.createElement("section");
+      projection.className = "a0-site-projection";
+      projection.hidden = true;
+      projection.setAttribute("aria-label", label);
+      const projectionBar = document.createElement("header");
+      projectionBar.className = "a0-site-projection-bar";
+      projectionBar.innerHTML = `<div><span><a class="a0-site-projection-home" href="index.html#top">NEXAH A0</a><small> · HAUSANSICHT</small></span><strong>${label}</strong></div>`;
+      const projectionClose = document.createElement("button");
+      projectionClose.type = "button";
+      projectionClose.textContent = "A0 zurück";
+      projectionClose.setAttribute("aria-label", `${label} schließen und zu A0 zurückkehren`);
+      projectionBar.append(projectionClose);
+      const projectionFrame = document.createElement("iframe");
+      projectionFrame.className = "a0-site-projection-frame";
+      projectionFrame.title = title;
+      projectionFrame.setAttribute("loading", "eager");
+      projection.append(projectionBar, projectionFrame);
+      document.body.append(projection);
+      let activeTrigger = null;
+      const placeProjection = () => {
+        const bottom = header.getBoundingClientRect?.().bottom || 64;
+        projection.style.top = `${Math.max(0, Math.ceil(bottom))}px`;
+      };
+      const closeProjection = () => {
+        projection.hidden = true;
+        setProjectedLane();
+        activeTrigger?.removeAttribute("aria-current");
+        activeTrigger?.focus?.();
+        activeTrigger = null;
+      };
+      const showProjection = (trigger = null) => {
+        if (document.documentElement?.dataset?.nexahedronProjection) return;
+        const owningLane = trigger?.parentNode?.className?.includes?.("a0-reader-lane") ? trigger.parentNode : null;
+        siteProjections.forEach((other) => { if (other !== projection) other.hidden = true; });
+        siteProjectionTriggers.forEach((other) => other?.removeAttribute("aria-current"));
+        if (owningLane) owningLane.open = false;
+        activeTrigger = trigger;
+        const projectionHref = refreshOnOpen
+          ? (() => {
+              const currentHref = new URL(href, location.href);
+              currentHref.searchParams.set("a0_preview", String(Date.now()));
+              return currentHref.href;
+            })()
+          : href;
+        if (projectionFrame.getAttribute("src") !== projectionHref) projectionFrame.setAttribute("src", projectionHref);
+        placeProjection();
+        projection.hidden = false;
+        setProjectedLane(lane);
+        activeTrigger?.setAttribute("aria-current", "page");
+        projectionClose.focus?.();
+      };
+      const openProjection = (event) => {
+        event.preventDefault();
+        const owningLane = event.currentTarget?.parentNode?.className?.includes?.("a0-reader-lane") ? event.currentTarget.parentNode : null;
+        if (!projection.hidden && owningLane?.dataset?.lane === lane) {
+          closeProjection();
+          owningLane.open = true;
+          return;
+        }
+        showProjection(event.currentTarget);
+      };
+      siteProjections.push(projection);
+      siteProjectionTriggers.push(...triggers);
+      triggers.forEach((trigger) => trigger?.addEventListener("click", openProjection));
+      projectionClose.addEventListener("click", closeProjection);
+      if (returnMessage) {
+        window.addEventListener("message", (event) => {
+          if (event.origin !== new URL(href, location.href).origin || event.source !== projectionFrame.contentWindow) return;
+          if (event.data?.type === returnMessage) closeProjection();
+        });
+      }
+      if (route === "nexah-science") {
+        const projectionOrigin = new URL(href, location.href).origin;
+        window.addEventListener("message", (event) => {
+          if (event.origin !== projectionOrigin || event.source !== projectionFrame.contentWindow) return;
+          if (event.data?.type !== "nexah:owner-route" || typeof event.data.path !== "string") return;
+          let next;
+          try { next = new URL(event.data.path, projectionOrigin); } catch { return; }
+          if (next.origin !== projectionOrigin) return;
+          const ownerUrl = new URL(location.href);
+          const framedPath = `${next.pathname}${next.search}${next.hash}`;
+          if (ownerUrl.searchParams.get("nexah-path") === framedPath) return;
+          ownerUrl.searchParams.set("nexah-path", framedPath);
+          history.replaceState(history.state, "", ownerUrl);
+        });
+      }
+      window.addEventListener("resize", () => { if (!projection.hidden) placeProjection(); });
+      window.addEventListener("keydown", (event) => { if (event.key === "Escape" && !projection.hidden) closeProjection(); });
+      if (route && requestedProjection === route) showProjection();
+      return projection;
+    };
+
+    const nexahedronEntries = [...document.querySelectorAll?.("[data-a0-nexahedron]") || []];
+    nexahedronEntries.forEach((entry) => entry.setAttribute("href", nexahedronHref));
+    [...document.querySelectorAll?.("[data-a0-nexahedron-preview]") || []]
+      .forEach((preview) => preview.setAttribute("src", nexahedronHref));
+    mountSiteProjection({
+      href: nexahedronHref,
+      label: "NEXAHEDRON · HUMAN VIEW",
+      title: localOwnerContext ? "NEXAHEDRON · aktuelle Staging-Ansicht unter NEXAH A0" : "NEXAHEDRON · Human View unter NEXAH A0",
+      triggers: nexahedronEntries,
+      route: "nexahedron",
+      lane: "human",
+      refreshOnOpen: localOwnerContext,
+      returnMessage: "nexah:a0-projection-return"
+    });
+
+    if (localOwnerContext) {
+      const localNexahEntries = [...document.querySelectorAll?.("[data-a0-nexah-stage]") || []];
+      localNexahEntries.forEach((entry) => entry.setAttribute("href", nexahStagingHref));
+      [...document.querySelectorAll?.("[data-a0-nexah-stage-preview]") || []]
+        .forEach((preview) => preview.setAttribute("src", nexahStagingHref));
+      const localBuilderEntries = [...document.querySelectorAll?.("[data-a0-builder-showcase]") || []];
+      mountSiteProjection({
+        href: builderShowcaseHref,
+        label: "A0 BUILDER HOME · SHOWCASE",
+        title: "A0 Builder Home · source-bound Mission Control Showcase",
+        triggers: localBuilderEntries,
+        route: "builder-showcase",
+        lane: "builder"
+      });
+      mountSiteProjection({
+        href: builderDeskHref,
+        label: "BUILDER DESK · B0",
+        title: "B0 Builder Desk unter NEXAH A0",
+        triggers: [builderDeskLink],
+        route: "builder-desk",
+        lane: "builder"
+      });
+      mountSiteProjection({
+        href: missionControlHref,
+        label: "MISSION CONTROL · STEUERUNG",
+        title: "Mission Control unter NEXAH A0",
+        triggers: [missionControlLink],
+        route: "mission-control"
+      });
+      const localScarabEntries = [...document.querySelectorAll?.("[data-a0-scarabaeus]") || []];
+      localScarabEntries.forEach((entry) => entry.setAttribute("href", scarabaeusA0Href));
+      [...document.querySelectorAll?.("[data-a0-scarabaeus-preview]") || []]
+        .forEach((preview) => preview.setAttribute("src", scarabaeusA0Href));
+      mountSiteProjection({
+        href: nexahProjectionHref,
+        label: "NEXAH SCIENCE · STAGING / OWNER-ABNAHME",
+        title: "NEXAH Science · aktueller nexah.de Stagingstand",
+        triggers: localNexahEntries,
+        route: "nexah-science"
+      });
+    }
+  }
   // A return banner is useful only when a crosswalk context was supplied.
   if (file === "A0_LIVING_BLUEPRINT.html" && ![...new URLSearchParams(location.search).keys()].some(key => key.startsWith("hc_"))) {
     const returnBanner = document.getElementById("humanCrosswalkReturn");
     if (returnBanner) returnBanner.hidden = true;
   }
-  header.dataset.a0Lane = currentLane.key;
+  header.dataset.a0Lane = currentLane?.key || "portal";
   document.addEventListener("click", (event) => {
     if (event.target.closest(".a0-reader-lane, .a0-page-menu")) return;
     header.querySelectorAll("details[open]").forEach((details) => { details.open = false; });

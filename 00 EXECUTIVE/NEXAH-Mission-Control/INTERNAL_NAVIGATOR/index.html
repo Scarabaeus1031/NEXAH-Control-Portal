@@ -4,51 +4,142 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NEXAH Mission Control Navigator</title>
-  <link rel="stylesheet" href="styles.css?v=2026-10-21-the-eye-lineage">
+  <link rel="stylesheet" href="styles.css?v=2026-10-30-a0-binding">
 </head>
 <body>
-  <div class="shell">
+  <div class="shell" id="top">
+    <nav class="command-nav" aria-label="A0 Arbeits- und Mission-Control-Navigation">
+      <a class="command-brand" href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_DATA_AND_REGISTERS.html#top"><strong>A0</strong><span>Data &amp; Registers</span></a>
+      <div class="workspace-links" aria-label="A0 Desks">
+        <a class="workspace-science" href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_RESEARCH_DESK.html#desk-cabinet"><span>01</span> Science Desk</a>
+        <a class="workspace-builder" href="../../../10%20NEXAH%20CORE/NEXAH/BUILDER/B0_BUILDER_DECK/index.html"><span>02</span> Builder Desk</a>
+        <a class="workspace-control" href="#top" aria-current="page"><span>03</span> Mission Control</a>
+      </div>
+      <div class="command-links">
+        <a href="#action-board" data-section-target="action-board">Aktion</a>
+        <a href="#desk-routes" data-section-target="desk-routes">Routen</a>
+        <a href="#mission-guidance" data-section-target="mission-guidance">Strategy &amp; Vision</a>
+        <a href="#release-outreach-plate" data-section-target="release-outreach-plate">Publishing</a>
+        <a href="#reading-path" data-section-target="reading-path">Lesepfad</a>
+        <a href="#source-field" data-section-target="source-field">Quellen finden</a>
+      </div>
+    </nav>
     <header class="masthead">
       <div>
-        <p class="eyebrow">NEXAH · INTERNAL ORIENTATION INSTRUMENT</p>
+        <p class="eyebrow">A0 · OWNER / STRATEGY VIEW · INTERNAL</p>
         <h1>Mission Control Navigator</h1>
-        <p class="lede">Mission Control liest den gegenwärtigen Stand, bindet ihn an Owner View und Strategy und öffnet daraus die zulässigen Routen in die bestehenden Desks. Die Desks bleiben Arbeitsräume mit eigener Autorität und eigenem Return.</p>
-        <nav class="portal-actions" aria-label="Interne Navigatoren">
-          <a class="button primary" href="#mission-guidance">Owner Return &amp; Strategy</a>
-          <a class="button primary" href="#desk-routes">Desk-Routen öffnen</a>
-          <a class="button primary" href="#reading-path">NEXAH Lesebaum starten</a>
-          <button class="button" id="openAchievementsReader" type="button">Achievements im Reader</button>
-          <a class="button" href="#deep-dives">Overview &amp; Deep Dives</a>
-          <a class="button" href="#bridge">Binding Bridge</a>
-          <a class="button secondary" id="scienceNavigatorLink" href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/SCIENCE_LAB/NAVIGATION/APP/index.html#home" data-file-href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/SCIENCE_LAB/NAVIGATION/APP/index.html">Science Navigator V2.1 öffnen</a>
-        </nav>
+        <p class="lede">Mission Control ist die Owner- und Strategy-Sicht innerhalb von A0. Sie liest den gegenwärtigen Stand und routet daraus in die zuständigen Funktionen. Science Desk und Builder Desk bleiben fachliche Arbeitsräume mit eigener Autorität und eigenem Return.</p>
+        <div class="field-signature" aria-label="Builder, Human Owner und Scarabäus als verbundene Rollen mit getrennten Verantwortungen">
+          <a class="field-role field-role-builder" href="../../../10%20NEXAH%20CORE/NEXAH/BUILDER/B0_BUILDER_DECK/index.html">
+            <small>SYSTEM · BUILD</small><strong>Builder</strong><span>Struktur · Instrument · technischer Return</span>
+          </a>
+          <div class="field-bridge" aria-label="Human bridge">
+            <small>HUMAN BRIDGE</small><strong>THooth</strong><span>Owner · Stimme · Entscheidung · Return</span>
+          </div>
+          <a class="field-role field-role-scarab" href="https://www.scarabaeus1033.net/">
+            <small>SCARABÆUS 1033 · WORKSHOP</small><strong>Scarabäus</strong><span>Werk · Experience · Ausdruck</span>
+          </a>
+          <p>ONE FIELD · DIFFERENT RESPONSIBILITIES · CONNECTION IS NOT IDENTITY</p>
+        </div>
+        <details class="secondary-routes">
+          <summary>Weitere Instrumente und Vertiefungen</summary>
+          <nav class="portal-actions" aria-label="Weitere interne Instrumente">
+            <button class="button" type="button" data-builder-achievements>Builder Achievements öffnen</button>
+            <a class="button" href="#deep-dives">Overview &amp; Deep Dives</a>
+            <a class="button" href="../REVIEWS/NEXAH_CONVERGENCE_AND_IDEA_LEDGER_2026-10-07.md" data-preview>Idea Ledger · Historie</a>
+            <a class="button" href="#bridge">Binding Bridge</a>
+            <a class="button secondary" id="scienceNavigatorLink" href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/SCIENCE_LAB/NAVIGATION/APP/index.html#home" data-file-href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/SCIENCE_LAB/NAVIGATION/APP/index.html">Science Navigator V2.1 öffnen</a>
+          </nav>
+        </details>
       </div>
-      <aside class="masthead-rail" aria-label="Mission Control Notizzettel">
-        <nav class="owner-postits" aria-label="A0 Science Desk, B0 Builder Deck, Chores und Ideen">
-          <a class="owner-postit owner-postit-a0" href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_RESEARCH_DESK.html#desk-cabinet">
-            <small>SCIENCE · RESEARCH DESK</small>
-            <strong>A0 Science Desk</strong>
-            <span>Findings, Protokolle, Papers, Evidenzgrenzen und wissenschaftlicher Return.</span>
-          </a>
-          <a class="owner-postit owner-postit-b0" href="../../../10%20NEXAH%20CORE/NEXAH/BUILDER/B0_BUILDER_DECK/index.html">
-            <small>SOFTWARE · APPLICATION · USEFULNESS</small>
-            <strong><b>B0</b> Builder Deck</strong>
-            <span>Bestand, Anwendungen, Build-Plan und der kürzeste Weg zu etwas Benutzbarem.</span>
-          </a>
-          <a class="owner-postit owner-postit-chores" href="../00_OVERVIEW/CHORES.md" data-source-id="DD-CHORES">
-            <small>MAINTENANCE · NOT ACTIVE</small>
-            <strong>Chores</strong>
-            <span>Gebundene Pflege, Aufräumen und spätere technische Vorbereitung.</span>
-          </a>
-          <a class="owner-postit owner-postit-ideas" href="../REVIEWS/NEXAH_CONVERGENCE_AND_IDEA_LEDGER_2026-10-07.md" data-source-id="DD-IDEAS">
-            <small>PARKING · NO ACTIVATION</small>
-            <strong>Mission Control<br>Notes &amp; Ideas</strong>
-            <span>Gedanken bewahren, Zusammenhänge sehen, noch keinen Auftrag erzeugen.</span>
-          </a>
-        </nav>
+      <aside class="masthead-rail" aria-label="Verdichtete Desk-Returns">
+        <div class="owner-postits" aria-label="Read-only Live-Status aus Science und Builder">
+          <article class="owner-postit owner-postit-return">
+            <small>LIVE DESK RETURNS · READ-ONLY</small>
+            <strong>Science + Builder</strong>
+            <div class="desk-return-lines">
+              <div class="desk-return-science">
+                <b>A0 Science Desk</b>
+                <span><em>P1</em> SCC-003-R1 review-ready · Reviewer/Human Return und Matryoshka bleiben Science-Horizonte · 0 aktive Runs.</span>
+              </div>
+              <div class="desk-return-builder">
+                <b>B0 Builder Deck</b>
+                <span><em>0 ACTIVE BUILDS</em> Website-Task geschlossen · UDF/Assembly und THE MACHINA/3D bleiben geparkte Projekte.</span>
+              </div>
+            </div>
+            <p>DISPLAY ONLY · DESKS OWN WORK → RETURN → OWNER SELECTS / HOLD</p>
+          </article>
+        </div>
         <div class="truth" id="truth" aria-live="polite">Katalog wird geladen …</div>
       </aside>
     </header>
+
+    <section class="action-board" id="action-board" aria-labelledby="action-board-title">
+      <header class="action-board-head">
+        <div>
+          <p class="eyebrow">01 · ACTION / MISSION BOARD</p>
+          <h2 id="action-board-title">Was jetzt gepusht wird.</h2>
+          <p>Der operative Einstieg von Mission Control: ein Wochenfokus, eine priorisierte Projektübersicht und die Gates vor Review oder Release. Detailtexte und Quellen bleiben im Reader.</p>
+        </div>
+        <div class="action-board-week">
+          <small>WOCHE · 02.–06. NOVEMBER 2026</small>
+          <strong>SCIENCE REVIEW</strong>
+          <span>Ein Review-Gate vorbereiten. Kein paralleler Build, kein Kontakt, kein Versand.</span>
+        </div>
+      </header>
+
+      <div class="action-board-main">
+        <article class="action-push">
+          <span>P1 · PUSH NOW · IMPACT HOCH</span>
+          <h3>SCC-003-R1</h3>
+          <p>Das versiegelte Paket ist review-ready. Mission Control pusht jetzt nur die Entscheidungsreife des Review-Gates.</p>
+          <dl>
+            <div><dt>Jetzt</dt><dd>Reviewer-Profil, exakte Paketrevision und Qualifikationskriterien.</dd></div>
+            <div><dt>STOP</dt><dd>Noch kein Kontakt, keine Übermittlung, keine Publikation.</dd></div>
+            <div><dt>Return</dt><dd>Owner-Gate für Kontakt oder bewusster Hold.</dd></div>
+          </dl>
+          <a href="../00_OVERVIEW/OWNER_VIEW.md" data-preview data-reader-anchor="p1-scc-003-r1-unabhängige-prüfung">P1 im Reader öffnen →</a>
+        </article>
+
+        <div class="action-overview" aria-label="Mission Control Missions">
+          <table>
+            <caption><span>MISSION CONTROL</span> Missions</caption>
+            <thead><tr><th>Prio</th><th>Mission / Projekt</th><th>Impact</th><th>Gate</th><th>MC Push</th></tr></thead>
+            <tbody>
+              <tr class="is-push"><td>P1</td><td><a href="../00_OVERVIEW/OWNER_VIEW.md" data-preview data-reader-anchor="p1-scc-003-r1-unabhängige-prüfung">SCC-003-R1 <span>↗</span></a></td><td>hoch</td><td>vor externem Review</td><td>PUSH NOW</td></tr>
+              <tr><td>P2</td><td><a href="../00_OVERVIEW/OWNER_VIEW.md" data-preview data-reader-anchor="p2-f-a0-26-begrenzter-review-probe">F-A0-26 <span>↗</span></a></td><td>mittel</td><td>Probe ready</td><td>READY NEXT</td></tr>
+              <tr><td>P3</td><td><a href="../00_OVERVIEW/OWNER_VIEW.md" data-preview data-reader-anchor="p3-a0-bl-056-pre-review-abschließen">A0-BL-056 <span>↗</span></a></td><td>mittel</td><td>Pre-Review offen</td><td>PENDING</td></tr>
+              <tr><td>P4</td><td><a href="../00_OVERVIEW/OWNER_VIEW.md" data-preview data-reader-anchor="p4-udf-human-evidence-exit-später">UDF <span>↗</span></a></td><td>potenziell hoch</td><td>Human Gate fehlt</td><td>PENDING</td></tr>
+            </tbody>
+          </table>
+          <p><strong>Release Radar:</strong> PR-007 blockiert · PR-005/006 deferred · PR-008 prepared. M-PUB01 und THE MACHINA bleiben standing/held, nicht aktive Arbeit.</p>
+        </div>
+      </div>
+
+      <details class="action-editorial">
+        <summary>
+          <span>EDITORIAL 01</span>
+          <strong>Wochenausgabe · Science Review</strong>
+          <em>ausklappen +</em>
+        </summary>
+        <div>
+          <p>Die öffentliche Schwelle steht. Diese Woche beginnt kein weiterer Ausbau: Der wichtigste Fortschritt ist ein belastbarer externer Blick auf einen bereits vollständig verpackten Gegenstand.</p>
+          <table>
+            <tbody>
+              <tr><th>Fokus</th><td>Genau ein SCC-003-R1 Review-Gate entscheidungsreif machen.</td></tr>
+              <tr><th>Erfolg am Freitag</th><td>Profil, Paketrevision und Qualifikation sind klar; Kontakt bleibt gesperrt.</td></tr>
+              <tr><th>Nicht diese Woche</th><td>F-A0-26 parallel starten, A0-BL-056 aktivieren, UDF testen oder Outreach beginnen.</td></tr>
+            </tbody>
+          </table>
+          <a href="../00_OVERVIEW/OWNER_VIEW.md" data-preview data-reader-anchor="mission-board-nächste-woche-science-review">Vollständiges Wochenbriefing im Reader →</a>
+        </div>
+      </details>
+
+      <footer class="action-board-links">
+        <a href="../00_OVERVIEW/OWNER_VIEW.md" data-preview data-reader-anchor="mission-pipeline-push-release-pending-hold">Gesamte Mission Pipeline lesen →</a>
+        <a href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_RESEARCH_DESK.html#desk-cabinet">Science Desk →</a>
+      </footer>
+    </section>
 
     <section class="mission-guidance" id="mission-guidance" aria-labelledby="mission-guidance-title">
       <div class="guidance-prologue">
@@ -56,49 +147,206 @@
         <h2 id="mission-guidance-title">Erst Sinn. Dann Richtung. Dann Auftrag.</h2>
         <p>Diese Fläche ist die kommentierte Rückgabe von Mission Control an den Human Owner. Sie verdichtet den Bestand, ohne Science, Framework, Builder oder Publishing zu übernehmen. Erst aus dieser Lesart werden die gegenwärtig zulässigen Desk-Routen sichtbar.</p>
       </div>
+      <div class="control-ledger" id="open-maintenance" aria-label="Mission-Control-Statusregister">
+        <a href="../00_OVERVIEW/CHORES.md" data-preview>
+          <span>MAINTENANCE</span>
+          <strong>Clean Desk · 0 offen</strong>
+          <p>Pflegeregeln und geschlossene Arbeiten bleiben im Register; Maintenance ist keine eigene Queue.</p>
+        </a>
+        <div>
+          <span>NÄCHSTE WOCHE · P1</span>
+          <strong>SCC-003-R1 Review-Gate vorbereiten</strong>
+          <p>Kein Kontakt, kein Outreach und keine Forschungsaktivierung ohne weitere Owner-Entscheidung.</p>
+        </div>
+      </div>
       <div class="guidance-sequence" aria-label="Mission-Control-Führung">
         <article>
           <span>01 · OWNER VIEW</span>
           <h3>Was bedeutet der erreichte Stand?</h3>
-          <p>A0 ist als zusammenhängendes Werk und wissenschaftlicher Rahmen sichtbar. Der nächste Fortschritt liegt nicht in mehr Material, sondern in Auswahl, Grenze und lesbarer Rückgabe.</p>
-          <a href="../00_OVERVIEW/OWNER_VIEW.md" data-preview>Owner Return lesen →</a>
+          <p>Drei kurze Reiter trennen den realen Status, die öffentlichen Cuts mit ihren Leuchttürmen und die gemeinsame NEXAH Vision. So bleibt die Owner-Sicht lesbar, ohne Science- oder Builder-Arbeit zu verdoppeln.</p>
+          <a href="owner-editorial.html#status">Editorial öffnen →</a>
         </article>
         <b aria-hidden="true">→</b>
-        <article>
-          <span>02 · STRATEGY</span>
-          <h3>Release-Disziplin vor weiterem Ausbau.</h3>
-          <p>Human, Science und Builder bleiben getrennte Stimmen desselben Werks. Öffentliche und interne Flächen werden gebunden, geprüft und nicht durch eine neue Gesamtarchitektur ersetzt.</p>
-          <a href="../00_OVERVIEW/OWNER_VIEW.md#a0-strategy-assessment-20261018" data-preview>Strategische Einordnung →</a>
+        <article class="guidance-editorial">
+          <span>02 · STRATEGY · OWNER VIEW</span>
+          <h3>Science Review ist gewählt.<br>Jetzt den Gate vorbereiten.</h3>
+          <p class="guidance-editorial-lede">Owner View ist die aktuelle Strategy: nicht mehr Material, sondern ein begrenzter nächster Zug aus dem erreichten Stand.</p>
+          <div class="guidance-editorial-frame" aria-label="Owner-Strategy-Vertrag">
+            <p><small>P1</small><strong>SCC-003-R1.</strong></p>
+            <p><small>GRENZE</small><strong>Die Desks behalten ihre Autorität.</strong></p>
+            <p><small>RETURN</small><strong>Entscheidung, Hold oder STOP.</strong></p>
+          </div>
+          <nav class="guidance-editorial-links" aria-label="Owner Strategy lesen">
+            <a href="owner-editorial.html#vision">Owner Editorial öffnen →</a>
+            <a href="../00_OVERVIEW/OWNER_VIEW.md" data-preview data-reader-anchor="mission-board-nächste-woche-science-review">Strategy-Quelle lesen →</a>
+          </nav>
         </article>
         <b aria-hidden="true">→</b>
         <article>
           <span>03 · MISSION CONTROL</span>
-          <h3>M-PUB01 · A0 Experience live, Gesamtgate offen.</h3>
-          <p>Die kuratierte A0/NEXAHEDRON-Projektion ist öffentlich ausgeliefert. Science Desk, NSN und Mission Control bleiben intern; wissenschaftliche Publikation ist nicht freigegeben. NEXAH- und Scarabæus-Cuts, Rechte, Accessibility, integrierte Source-to-live-Belege und Rollback bleiben Missionsgates.</p>
+          <h3>M-PUB01 · Drei Häuser live, Science Review gewählt.</h3>
+          <p>NEXAH.de, NEXAHEDRON und Scarabæus sind öffentlich und Owner-abgenommen. Der Website-Task ist geschlossen. M-PUB01 hält den stabilen Rahmen; als nächstes wird genau das SCC-003-R1 Review-Gate vorbereitet. Kontakt und Übermittlung bleiben gesperrt.</p>
           <a href="../MISSIONS/M-PUB01_NEXAH_PUBLIC_FIELD.md" data-preview>Aktive Mission lesen →</a>
         </article>
       </div>
       <p class="guidance-boundary"><strong>Authority:</strong> Owner View deutet · Strategy ordnet · Mission Control koordiniert · der jeweilige Desk behält seine fachliche Autorität.</p>
     </section>
 
+    <section class="release-outreach-plate" id="release-outreach-plate" aria-labelledby="release-outreach-title">
+      <div class="release-plate-head">
+        <div>
+          <p class="eyebrow">MISSION CONTROL PLATE · PUBLISHING → RELEASE → OUTREACH</p>
+          <h2 id="release-outreach-title">Was wir haben. Was raus darf. Was zurückkommt.</h2>
+          <p>Eine operative Übersicht über Werke, Bücher, öffentliche Häuser, Experiences und Kanäle. Sie liest bestehende Register und Gates; sie erzeugt keine zweite Library und aktiviert keinen Kontakt.</p>
+        </div>
+        <div class="release-plate-status" aria-label="Aktueller Release-Status">
+          <span><small>ACTIVE PRIORITY</small><strong>M-PUB01 · HOLDING</strong></span>
+          <span><small>A0 HUMAN VIEW</small><strong>LIVE · BOUNDED</strong></span>
+          <span><small>SCIENCE PUBLICATION</small><strong>NOT AUTHORIZED</strong></span>
+          <span><small>OUTREACH</small><strong>HOLD</strong></span>
+        </div>
+      </div>
+
+      <section class="channel-block" aria-labelledby="publishing-channels-title">
+        <header class="channel-block-head">
+          <div>
+            <span>CHANNEL OPERATIONS · PUBLIC / SOURCE / RETURN</span>
+            <h3 id="publishing-channels-title">Drei Häuser. Ein Ökosystem. Ein Gate.</h3>
+          </div>
+          <b>16 REGISTERED ROUTES · 9 PUBLIC DESTINATIONS · OUTREACH HOLD</b>
+        </header>
+        <div class="channel-groups">
+          <section class="channel-group channel-group-live">
+            <h4>HOME · THREE PUBLIC CUTS</h4>
+            <nav aria-label="Öffentliche Websites">
+              <a href="https://nexah.de/">nexah.de ↗</a>
+              <a href="https://nexahedron.com/">nexahedron.com ↗</a>
+              <a href="https://www.scarabaeus1033.net/">scarabaeus1033.net ↗</a>
+            </nav>
+          </section>
+          <section class="channel-group channel-group-source">
+            <h4>SOURCE · LIBRARY / CODE / EVIDENCE</h4>
+            <nav aria-label="Quellen- und Repository-Kanäle">
+              <a href="https://www.are.na/nexah-scarabaeus1031/channels">Are.na ↗</a>
+              <a href="https://github.com/Scarabaeus1031">GitHub Ecosystem ↗</a>
+              <a href="../CURRENT/REPOSITORY_ROLES.csv" data-preview>Repository Roles →</a>
+            </nav>
+          </section>
+          <section class="channel-group channel-group-distribution">
+            <h4>DISTRIBUTION · EDITORIAL / SOCIAL</h4>
+            <nav aria-label="Publishing- und Distributionskanäle">
+              <a href="https://www.instagram.com/scarabaeus1033/">Instagram ↗</a>
+              <a href="https://x.com/Scarabaeus1033">X ↗</a>
+              <a href="https://www.behance.net/Scarabaeus1033">Behance ↗</a>
+              <a href="https://nexah.substack.com/">Substack ↗</a>
+            </nav>
+          </section>
+          <section class="channel-group channel-group-control">
+            <h4>CONTROL · QUEUE / GATE / RETURN</h4>
+            <nav aria-label="Publishing-Steuerung">
+              <a href="../CURRENT/OUTREACH_CHANNELS.csv" data-preview>Channel Registry →</a>
+              <a href="../PUBLISHING/PUBLISHING_QUEUE.md" data-preview>Queue →</a>
+              <a href="../00_OVERVIEW/OUTREACH_VIEW.md" data-preview>Outreach View →</a>
+              <a href="../CURRENT/RETURN_INGESTION_AND_PUBLICATION_BOUNDARY_PROTOCOL.md" data-preview>Return Protocol →</a>
+            </nav>
+          </section>
+        </div>
+        <details class="channel-ecosystem">
+          <summary>
+            <span>GITHUB · ASSETS &amp; TOOLS</span>
+            <strong>Human · Science · Builder</strong>
+            <em>11 Repos · öffnen</em>
+          </summary>
+          <div class="channel-ecosystem-grid">
+            <article>
+              <small>HUMAN · VOICE / EXPERIENCE / CUSTODY</small>
+              <h4>Experience · Codex · Private</h4>
+              <p>NEXAH Experience ist die öffentliche und intellektuelle Human-Heimat. NEXAH-CODEX bleibt als gefrorenes Scarabæus-/Human-Archiv erhalten. Private Owner-Repositories halten Entscheidung und persönliche System-Custody; sie sind keine öffentlichen Fachkanäle.</p>
+              <nav>
+                <a href="https://github.com/Scarabaeus1031/NEXAH-Experience">Experience ↗</a>
+                <a href="https://github.com/Scarabaeus1033/NEXAH-CODEX">NEXAH-CODEX ↗</a>
+                <a href="../../../40%20EXPERIENCE%20PRODUCTION/NEXAH-Experience/dist/index.html">NEXAH lokal</a>
+              </nav>
+            </article>
+            <article>
+              <small>SCIENCE · EVIDENCE &amp; DATA</small>
+              <h4>Science Lab · Core Research</h4>
+              <p>Lab Register, A0-Pakete, Results, Run Contracts und der Science Navigator / Source Graph bleiben wissenschaftliche Container. NEXAH Core hält zusätzlich Framework-, Semantik- und Forschungsbestand; Quellenlage ist nicht automatisch Evidenz.</p>
+              <nav>
+                <a href="https://github.com/Scarabaeus1031/NEXAH-Science-Lab">Repository ↗</a>
+                <a href="https://github.com/Scarabaeus1031/NEXAH">NEXAH Core ↗</a>
+                <a class="channel-a0" href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_DATA_AND_REGISTERS.html#top">A0 Data &amp; Registers</a>
+                <a href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/SCIENCE_LAB/NAVIGATION/APP/index.html#home">Science Navigator</a>
+              </nav>
+            </article>
+            <article>
+              <small>BUILDER · EXECUTION &amp; DELIVERY</small>
+              <h4>B0 · ORION · NEXAHEDRON</h4>
+              <p>Der Builder Deck routet Werkzeuge und Anwendungen; ORION hält den zertifizierten Prozessor; NEXAHEDRON und das Control Portal liefern begrenzte Human-facing Implementierungen. Kein Repository steht für das Ganze.</p>
+              <nav>
+                <a href="https://github.com/Scarabaeus1031/NEXAH-ORION">ORION ↗</a>
+                <a href="https://github.com/Scarabaeus1031/NEXAHEDRON">NEXAHEDRON ↗</a>
+                <a href="https://github.com/Scarabaeus1031/NEXAH-Control-Portal">Control Portal ↗</a>
+                <a href="../../../10%20NEXAH%20CORE/NEXAH/BUILDER/B0_BUILDER_DECK/index.html">Builder Desk</a>
+              </nav>
+            </article>
+          </div>
+          <p class="channel-ecosystem-boundary">Human entscheidet und trägt · Science prüft Evidenz · Builder implementiert · Repository → fachlicher Container → freigegebener Cut → Channel. Ein GitHub-Link ist Quellenzugang, keine wissenschaftliche Promotion und keine Outreach-Aktivierung.</p>
+        </details>
+        <div class="channel-gate">
+          <div>
+            <span>STATUS · CHANNEL INVENTORY CURRENT / NO POST AUTHORIZED</span>
+            <strong>Der öffentliche Shop steht; Publishing bleibt ein Owner-Gate.</strong>
+            <p>Instagram ist über Metricool verbunden. X, Behance, Substack, Are.na und GitHub sind als getrennte Rollen erfasst. Verbindung und Sichtbarkeit autorisieren weder Kampagne noch Post; jeder externe Write braucht ein exaktes Objekt und eine eigene Owner-Freigabe.</p>
+          </div>
+          <nav aria-label="Owner-Gate und Builder-Desk">
+            <a class="button primary" href="../PUBLISHING/PUBLISHING_QUEUE.md" data-preview>Publishing Queue</a>
+            <a class="button" href="../../../10%20NEXAH%20CORE/NEXAH/BUILDER/B0_BUILDER_DECK/public-field.html">Website Desk</a>
+          </nav>
+        </div>
+        <p class="channel-flow">SOURCE / HOLDINGS → CURATED CUT → CLAIM &amp; RIGHTS CHECK → OWNER APPROVAL → CHANNEL RECEIPT → RETURN</p>
+      </section>
+    </section>
+
     <section class="desk-routes" id="desk-routes" aria-labelledby="desk-routes-title">
       <div class="section-head route-head">
         <div>
-          <p class="eyebrow">AUTHORIZED EXITS · EXISTING DESK IDENTITIES</p>
+          <p class="eyebrow">OWNER ROUTES · CURRENT STRATEGY · AUTHORIZED EXITS</p>
           <h2 id="desk-routes-title">Welche Wege sich aus der Lage öffnen</h2>
         </div>
-        <p>Die Desks sind keine zweite Inhaltsordnung. Sie sind typisierte Ausgänge aus der strategischen Lesart: offen, mitführend, nachgelagert oder gehalten — jeweils mit Grenze und erwartetem Return.</p>
+        <p>Das ist die operative Vorderseite von Mission Control: deine gegenwärtigen Wege, ihre Grenze und der erwartete Return. Der Bestand folgt erst danach.</p>
+      </div>
+
+      <div class="route-command-strip" aria-label="Vision, aktuelle Strategy und nächste Owner-Entscheidung">
+        <article>
+          <span>VISION</span>
+          <strong>Orientierung vor Entscheidung.</strong>
+          <p>NEXAH macht Herkunft, Cut, Veränderung, Verlust, Evidenzgrenze und Human Authority sichtbar.</p>
+          <a href="owner-editorial.html#vision">Vision öffnen →</a>
+        </article>
+        <article>
+          <span>NEXT WEEK · SCIENCE REVIEW</span>
+          <strong>Review statt weiterer Build.</strong>
+          <p>P1 ist SCC-003-R1. F-A0-26 und A0-BL-056 sind die nachgeordneten Science-Exits; UDF folgt später als Human-Evidence-Kandidat. Keine parallelen Aufträge.</p>
+            <a href="../00_OVERVIEW/OWNER_VIEW.md" data-preview data-reader-anchor="mission-board-nächste-woche-science-review">Wochenfokus &amp; Mission Pipeline lesen →</a>
+        </article>
+        <article class="route-command-decision">
+          <span>P1 · NÄCHSTE AKTION</span>
+          <strong>SCC-003-R1 Review-Gate vorbereiten.</strong>
+          <p>Reviewer-Profil, exakte Paketrevision und Qualifikation vorbereiten; kein Kontakt, kein Versand und keine Aktivierung.</p>
+          <a href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_RESEARCH_DESK.html#desk-cabinet">Science Desk →</a>
+        </article>
       </div>
 
       <div class="route-stack">
-        <details class="desk-route route-open" open>
+        <details class="desk-route">
           <summary>
-            <span class="route-state">JETZT GEÖFFNET</span>
+            <span class="route-state">AUSGELIEFERT</span>
             <strong>Öffentliche Schwelle</strong>
             <em>Desk 07 · Publishing</em>
           </summary>
           <div class="route-body">
-            <p class="route-reading">A0 besitzt genügend zusammenhängendes Material für eine begrenzte öffentliche Form. Der Auftrag ist jetzt Auswahl, Trennung, Prüfung und wahrheitsgemäße Freigabe — nicht die Vergrößerung des Korpus.</p>
+            <p class="route-reading">Die begrenzte öffentliche Form ist ausgeliefert: drei Häuser stehen, der nexah.de-Fünf-Punkte-Pass ist geschlossen. Publishing bleibt für einzelne spätere Objekte verfügbar, ist aber nicht der nächste automatische Auftrag.</p>
             <dl>
               <div><dt>Öffnet</dt><dd>Public Field · Release Gate · Rechte · Abhängigkeiten · Rollback</dd></div>
               <div><dt>Grenze</dt><dd>Keine Quellwissenschaft reparieren, keine Claim Boundary abschwächen.</dd></div>
@@ -111,18 +359,18 @@
           </div>
         </details>
 
-        <details class="desk-route route-supporting">
+        <details class="desk-route route-supporting route-priority route-open" open>
           <summary>
-            <span class="route-state">MITFÜHREND</span>
+            <span class="route-state">AUSWAHLKANDIDAT · NICHT AKTIV</span>
             <strong>Wissenschaftliche Rückbindung</strong>
             <em>Desk 05 · Science Lab</em>
           </summary>
           <div class="route-body">
-            <p class="route-reading">Der öffentliche Weg darf die wissenschaftliche Grenze nicht überschreiben. A0 Research Desk, Findings, Protokolle und Claim Boundaries bleiben deshalb als Quellenautorität angebunden, ohne einen neuen Research-Zyklus zu öffnen.</p>
+            <p class="route-reading">SCC-003-R1 ist der reifste nächste Kandidat: ein versiegeltes Review-Paket für Beweis, Gegenbeispiel und Prior Art. Die Owner-Auswahl würde zunächst nur Reviewer-Benennung und exakte Paketbindung erlauben; A0-BL-056 bleibt offen, aber nicht aktiv.</p>
             <dl>
-              <div><dt>Öffnet</dt><dd>A0 Science Desk · Evidence · Findings · Papers · Protocols</dd></div>
-              <div><dt>Grenze</dt><dd>Structure Freeze · 0 aktive Research-Zyklen · keine neue Behauptung.</dd></div>
-              <div><dt>Return</dt><dd>Belegte Aussagegrenze, vorhandener Befund oder wissenschaftlicher STOP.</dd></div>
+              <div><dt>Öffnet</dt><dd>Owner-Prüfung von SCC-003-R1 · Reviewer-Qualifikation · exakte Paketbindung</dd></div>
+              <div><dt>Grenze</dt><dd>0 aktive Research-Zyklen · kein Kontakt · keine Übermittlung · keine neue Behauptung.</dd></div>
+              <div><dt>Return</dt><dd>Auswahl, bewusster Hold oder begründeter STOP.</dd></div>
             </dl>
             <nav class="route-actions" aria-label="Science route">
               <a class="button primary" href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_RESEARCH_DESK.html#desk-cabinet">A0 Science Desk</a>
@@ -133,7 +381,7 @@
 
         <details class="desk-route route-supporting">
           <summary>
-            <span class="route-state">MITFÜHREND</span>
+            <span class="route-state">LIVE · STEHEND</span>
             <strong>Erfahrbare Form</strong>
             <em>Desk 06 · Experience</em>
           </summary>
@@ -189,7 +437,7 @@
       </div>
 
       <details class="desk-directory">
-        <summary>Alle zehn Desk-Exits und ihre Rückkehrlogik <span>01–10</span></summary>
+        <summary>Legacy Desk Map · Custody und Rückkehrlogik <span>01–10</span></summary>
         <div class="desk-directory-grid">
           <div><b>01</b><strong>The EYE</strong><small>Entscheidung → 02</small></div>
           <div><b>02</b><strong>Mission Control</strong><small>Auftrag → Delivery Desk</small></div>
@@ -202,15 +450,15 @@
           <div><b>09</b><strong>Scarabæus1033</strong><small>Werk → 07 / 08 nur separat</small></div>
           <div><b>10</b><strong>Incoming</strong><small>Custody → Source Owner</small></div>
         </div>
-        <p class="desk-directory-note">Die vollständigen Authority-, STOP- und Handoff-Regeln bleiben im bestehenden Desk UX Operating Guide maßgeblich.</p>
+        <p class="desk-directory-note">Historische Codes bleiben für Custody und Handoffs stabil. Sie sind keine zehn aktiven Owner-Queues. Mission Control routet intern; Science Desk und Builder Desk bleiben die sichtbaren fachlichen Arbeitsräume.</p>
       </details>
     </section>
 
     <section class="surface-cabinet" id="surface-cabinet" aria-labelledby="surface-cabinet-title">
       <div>
-        <p class="eyebrow">BOUND SURFACES · OPEN ON DEMAND</p>
-        <h2 id="surface-cabinet-title">Bestand und Instrumente</h2>
-        <p>Die Routen oben führen. Hier bleibt der vollständige Arbeitsbestand erhalten: Desks, Lesepfade, Bücher, Ansichten, Returns, Bindings und Quellen. Jede Fläche öffnet sich einzeln und schließt wieder in Mission Control zurück.</p>
+        <p class="eyebrow">BOUND SURFACES · ONE SHELF · OPEN ON DEMAND</p>
+        <h2 id="surface-cabinet-title">Instrumente auf Abruf</h2>
+        <p>Vier Funktionen, keine zweite Queue: lesen, arbeiten, verbinden, bewahren. Eine Fläche öffnen, nutzen und nach Mission Control zurückkehren.</p>
       </div>
       <nav class="surface-index" id="surfaceIndex" aria-label="Arbeitsflächen öffnen"></nav>
     </section>
@@ -276,23 +524,30 @@
     <section class="reading-path" id="reading-path" aria-labelledby="reading-path-title">
       <div class="reading-path-intro">
         <div>
-          <p class="eyebrow">START HERE · EMPFOHLENER EINSTIEG</p>
-          <h2 id="reading-path-title">NEXAH Lesebaum</h2>
-          <p class="reading-path-lede">Eine Grundbeschreibung führt zu den gemeinsamen Achievements. Danach vertiefen Owner, Human, Science und Builder denselben Bestand aus vier klar getrennten Perspektiven.</p>
+          <p class="eyebrow">CURRENT ORIENTATION · CURATED READING TREE</p>
+          <h2 id="reading-path-title">Wenige Türen. Klare Quellen.</h2>
+          <p class="reading-path-lede">Oben stehen nur Zweck, aktueller Stand und gegenwärtige Richtung. Darunter bleiben vier Hauptstränge: Grundbeschreibung, Human, Science und Builder. Inventare, Handbooks, Toolboxes und Einzelbelege öffnen sich erst innerhalb des zuständigen Strangs.</p>
         </div>
         <button class="path-start" id="startMasterPath" type="button">
-          <small>01 · BEGINNEN MIT</small>
-          <strong>NEXAH Grundbeschreibung</strong>
+          <small>01 · MISSION · CONTROLLING PURPOSE</small>
+          <strong>NEXAH Mission Statement</strong>
           <span>Im internen Reader öffnen →</span>
         </button>
       </div>
       <div class="reading-path-logic" aria-label="Logik des Lesepfads">
-        <span>Was ist NEXAH?</span><b>→</b><span>Was wurde erreicht?</span><b>→</b><span>Was gilt?</span><b>→</b><span>Wozu?</span><b>→</b><span>Was trägt?</span><b>→</b><span>Was ist gebaut?</span>
+        <span>Wozu existiert NEXAH?</span><b>→</b><span>Was steht heute?</span><b>→</b><span>Was zählt jetzt?</span><b>→</b><span>Welche Quelle brauche ich?</span>
       </div>
-      <nav class="path" id="masterPath" aria-label="Sechs Stationen des NEXAH Lesebaums">
+      <nav class="path path-current" id="masterPath" aria-label="Drei aktuelle Stationen des NEXAH Lesebaums">
         <p class="path-loading">Lesepfad wird geladen …</p>
       </nav>
-      <p class="reading-path-boundary">Orientierungsfolge · Dokumente öffnen im internen Reader · Detailbibliothek und Source Field folgen darunter.</p>
+      <details class="reading-sources">
+        <summary><span>VIER HAUPTSTRÄNGE</span><strong>Grundbeschreibung · Human · Science · Builder</strong><b>öffnen +</b></summary>
+        <p>Jeder Strang besitzt einen Einstieg. Detaildokumente bleiben als Quellen, Spezifikationen, Inventare oder Provenienz dahinter erhalten und erscheinen nicht mehr als gleichrangige Hauptseiten.</p>
+        <nav class="path path-sources" id="sourceReadingPath" aria-label="Vertiefungsquellen des NEXAH Lesebaums">
+          <p class="path-loading">Quellen werden geladen …</p>
+        </nav>
+      </details>
+      <p class="reading-path-boundary">CURRENT TOP: MISSION · REAL STATUS · OWNER STRATEGY · darunter Source Reader und Provenienz.</p>
     </section>
 
     <section class="a1-section" id="book" aria-labelledby="a1-title">
@@ -331,8 +586,9 @@
         <div><span>SOURCE</span><strong>Evidence return</strong><small>subjects remain metadata · claims remain bounded</small></div>
       </div>
       <nav class="portal-actions" aria-label="Current flagship links">
-        <a class="button primary" href="../00_OVERVIEW/BUILDER_STATUS_REPORT.html">Builder View öffnen</a>
-        <a class="button primary" href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_RESEARCH_DESK.html">A0 Science Desk öffnen</a>
+        <button class="button primary" type="button" data-builder-achievements>Builder Achievements öffnen</button>
+        <a class="button primary" href="../00_OVERVIEW/SCIENCE_STATUS_REPORT.html">Science Status öffnen</a>
+        <a class="button" href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_RESEARCH_DESK.html">A0 Science Desk öffnen</a>
         <a class="button" href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_SCIENTIFIC_POSITION_REPORT.html">Wo steht NEXAH wissenschaftlich?</a>
         <a class="button" href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_ORIENTATION_CONTROLLER_BENCH.html">OCB v0.11 öffnen</a>
         <a class="button" href="../../../30%20SCIENCE%20LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/100_A0_ORIENTATION_CONTROLLER_BENCH_GAP_REGISTER_2026-10-16.md" data-preview>OCB Gap Register</a>
@@ -438,35 +694,43 @@
       <section class="explorer" id="source-field" aria-labelledby="explorer-title">
         <div class="section-head explorer-head">
           <div>
-            <p class="eyebrow">SOURCE FIELD</p>
-            <h2 id="explorer-title">Quellen und Instrumente</h2>
+            <p class="eyebrow">SOURCE FIELD · DELTA TO NSN</p>
+            <h2 id="explorer-title">Was ist gebunden? Was braucht Entscheidung?</h2>
           </div>
           <div class="counts" id="counts"></div>
         </div>
+        <p class="source-delta-lede">Das Source Field bleibt das breite repositoryübergreifende Fund- und Anti-Duplikationsfeld. Vorne steht nur das operative Delta zum Science Navigator; Dateien ohne erwartete Einzelidentität sind kein offener NSN-Fehler.</p>
+        <div class="source-delta" id="sourceDelta" aria-live="polite"><p class="path-loading">Delta wird berechnet …</p></div>
 
-        <div class="controls">
-          <label class="search-label">
-            <span>Suche</span>
-            <input id="search" type="search" placeholder="Titel, Quelle, Rolle, Pfad …" autocomplete="off">
-          </label>
-          <label><span>Typ</span><select id="kindFilter"><option value="">Alle Typen</option></select></label>
-          <label><span>Repository</span><select id="repoFilter"><option value="">Alle Repositories</option></select></label>
-          <label><span>Navigator-Bindung</span><select id="bindingFilter"><option value="">Alle Bindungen</option></select></label>
-          <label><span>Review-Klasse</span><select id="eligibilityFilter"><option value="">Alle Review-Klassen</option></select></label>
-          <label><span>Priorität</span><select id="priorityFilter"><option value="">Alle Prioritäten</option></select></label>
-          <label><span>Themenbahn</span><select id="themeFilter"><option value="">Alle Themen</option></select></label>
-        </div>
-        <div class="chips" id="categoryFilters" aria-label="Kategorien"></div>
+        <details class="source-inventory" id="sourceInventory">
+          <summary><span><small>FULL INVENTORY · BACKSTAGE</small><strong>Vollständiges Locator-Feld öffnen</strong></span><b>Suche · Filter · 1.920 Locators</b></summary>
+          <div class="source-inventory-body">
+            <div class="controls">
+              <label class="search-label">
+                <span>Suche</span>
+                <input id="search" type="search" placeholder="Titel, Quelle, Rolle, Pfad …" autocomplete="off">
+              </label>
+              <label><span>Typ</span><select id="kindFilter"><option value="">Alle Typen</option></select></label>
+              <label><span>Repository</span><select id="repoFilter"><option value="">Alle Repositories</option></select></label>
+              <label><span>Navigator-Bindung</span><select id="bindingFilter"><option value="">Alle Bindungen</option></select></label>
+              <label><span>Review-Klasse</span><select id="eligibilityFilter"><option value="">Alle Review-Klassen</option></select></label>
+              <label><span>Priorität</span><select id="priorityFilter"><option value="">Alle Prioritäten</option></select></label>
+              <label><span>Themenbahn</span><select id="themeFilter"><option value="">Alle Themen</option></select></label>
+            </div>
+            <div class="chips" id="categoryFilters" aria-label="Kategorien"></div>
 
-        <div class="workspace">
-          <div>
-            <p class="result-line" id="resultLine"></p>
-            <div class="cards" id="cards"></div>
+            <div class="workspace">
+              <div>
+                <p class="result-line" id="resultLine"></p>
+                <div class="cards" id="cards"></div>
+              </div>
+              <aside class="detail" id="detail">
+                <p class="detail-empty">Wähle eine Quelle. Hier erscheinen Rolle, Status, Provenienz und Vorschau.</p>
+              </aside>
+            </div>
           </div>
-          <aside class="detail" id="detail">
-            <p class="detail-empty">Wähle eine Quelle. Hier erscheinen Rolle, Status, Provenienz und Vorschau.</p>
-          </aside>
-        </div>
+        </details>
+        <p class="source-delta-boundary"><strong>Boundary:</strong> Diese Ansicht gruppiert vorhandene Locators. Sie nimmt keine Quelle in den NSN auf und erzeugt keine Identität, Relation, Evidenzpromotion oder Aktivierung.</p>
       </section>
     </main>
 
@@ -484,9 +748,9 @@
     <div id="previewBody" class="preview-body"></div>
   </dialog>
 
-  <script src="catalog.internal.js?v=2026-10-12-reading-tree-v1"></script>
-  <script src="reader.internal.js?v=2026-10-12-reading-tree-v1"></script>
-  <script src="app.js?v=2026-10-21-the-eye-lineage"></script>
+  <script src="catalog.internal.js?v=2026-10-30-delta-nsn"></script>
+  <script src="reader.internal.js?v=2026-10-30-delta-nsn"></script>
+  <script src="app.js?v=2026-10-30-delta-nsn"></script>
   <script src="../../../public-cut.js"></script>
 </body>
 </html>

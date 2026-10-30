@@ -1,30 +1,43 @@
 "use strict";
 
-const state = { catalog: null, category: "", search: "", kind: "", repo: "", binding: "", eligibility: "", priority: "", theme: "", selected: null, pathItems: [], limit: 160 };
+const state = { catalog: null, category: "", search: "", kind: "", repo: "", binding: "", eligibility: "", priority: "", theme: "", delta: "", selected: null, pathItems: [], limit: 160 };
 const $ = (id) => document.getElementById(id);
 const nodes = {
-  truth: $("truth"), masterPath: $("masterPath"), startMasterPath: $("startMasterPath"), deepDiveGroups: $("deepDiveGroups"), a1Grid: $("a1Grid"), counts: $("counts"),
+  truth: $("truth"), masterPath: $("masterPath"), sourceReadingPath: $("sourceReadingPath"), startMasterPath: $("startMasterPath"), deepDiveGroups: $("deepDiveGroups"), a1Grid: $("a1Grid"), counts: $("counts"),
   surfaceIndex: $("surfaceIndex"),
   search: $("search"), kind: $("kindFilter"), repo: $("repoFilter"), categories: $("categoryFilters"),
   binding: $("bindingFilter"), bindingSummary: $("bindingSummary"), bridgeNote: $("bridgeNote"), scienceLink: $("scienceNavigatorLink"),
   eligibility: $("eligibilityFilter"), eligibilitySummary: $("eligibilitySummary"),
   priority: $("priorityFilter"), theme: $("themeFilter"),
   cards: $("cards"), result: $("resultLine"), detail: $("detail"), dialog: $("previewDialog"),
+  sourceDelta: $("sourceDelta"), sourceInventory: $("sourceInventory"),
   previewTitle: $("previewTitle"), previewBody: $("previewBody"), closePreview: $("closePreview")
 };
 
 const SURFACE_CABINET = [
-  { id: "a0-private-desk", code: "05", title: "A0 Science Desk", role: "Science authority · private workbench" },
-  { id: "preserved-engines", code: "04", title: "Preserved Engines", role: "THE EYE lineage · private overlay" },
-  { id: "reading-path", code: "01", title: "NEXAH Lesebaum", role: "Orientation lens · shared reader" },
-  { id: "book", code: "03/06", title: "Foundation Book", role: "Framework · work · experience" },
-  { id: "current-flagships", code: "05/06", title: "Science → Builder → Human", role: "Bound flagship lenses" },
-  { id: "visual-series", code: "01", title: "Visual Overview", role: "Owner orientation · documentary" },
-  { id: "deep-dives", code: "03", title: "Overview & Deep Dives", role: "Library · currentness layers" },
-  { id: "transition-observatory", code: "05/04", title: "Transition Observatory", role: "Science return · verification" },
-  { id: "bridge", code: "03/05", title: "Binding Bridge", role: "Source relation · provenance" },
-  { id: "source-field", code: "02", title: "Source Field", role: "Mission Control discovery catalog" }
+  { id: "reading-path", group: "Lesen", code: "READ", title: "NEXAH Lesebaum", role: "Orientation lens · shared reader" },
+  { id: "book", group: "Lesen", code: "BOOK", title: "Foundation Book", role: "Framework · work · experience" },
+  { id: "visual-series", group: "Lesen", code: "VIEW", title: "Visual Overview", role: "Owner orientation · documentary" },
+  { id: "deep-dives", group: "Lesen", code: "LIB", title: "Overview & Deep Dives", role: "Library · currentness layers" },
+  { id: "a0-private-desk", group: "Arbeiten & prüfen", code: "A0", title: "A0 Science Desk", role: "Science authority · private workbench" },
+  { id: "current-flagships", group: "Arbeiten & prüfen", code: "FLOW", title: "Science → Builder → Human", role: "Bound flagship lenses" },
+  { id: "transition-observatory", group: "Arbeiten & prüfen", code: "RETURN", title: "Transition Observatory", role: "Science return · verification" },
+  { id: "bridge", group: "Verbinden & finden", code: "BIND", title: "Binding Bridge", role: "Source relation · provenance" },
+  { id: "source-field", group: "Verbinden & finden", code: "FIND", title: "Source Field", role: "Mission Control discovery catalog" },
+  { id: "preserved-engines", group: "Bewahren", code: "KEEP", title: "Preserved Engines", role: "THE EYE lineage · private overlay" }
 ];
+
+function prioritizeOperationalRoutes() {
+  const actionBoard = $("action-board");
+  const routes = $("desk-routes");
+  const guidance = $("mission-guidance");
+  if (actionBoard && guidance && guidance.parentNode) guidance.parentNode.insertBefore(actionBoard, guidance);
+  if (routes && guidance && guidance.parentNode) guidance.parentNode.insertBefore(routes, guidance);
+
+  const stack = routes?.querySelector(".route-stack");
+  const priority = stack?.querySelector(".route-priority");
+  if (stack && priority) stack.prepend(priority);
+}
 
 function setupSurfaceCabinet() {
   const surfaces = SURFACE_CABINET.map(config => ({...config, node: $(config.id)})).filter(surface => surface.node);
@@ -64,7 +77,8 @@ function setupSurfaceCabinet() {
   };
 
   if (nodes.surfaceIndex) {
-    nodes.surfaceIndex.innerHTML = surfaces.map(surface => `<button type="button" data-surface-target="${escapeHtml(surface.id)}"><b>${escapeHtml(surface.code)}</b><span>${escapeHtml(surface.title)}</span><em aria-hidden="true">+</em></button>`).join("");
+    const groups = [...new Set(surfaces.map(surface => surface.group))];
+    nodes.surfaceIndex.innerHTML = groups.map(group => `<section class="surface-index-group"><h3>${escapeHtml(group)}</h3><div>${surfaces.filter(surface => surface.group === group).map(surface => `<button type="button" data-surface-target="${escapeHtml(surface.id)}"><b>${escapeHtml(surface.code)}</b><span>${escapeHtml(surface.title)}</span><em aria-hidden="true">+</em></button>`).join("")}</div></section>`).join("");
     nodes.surfaceIndex.querySelectorAll("[data-surface-target]").forEach(button => button.addEventListener("click", () => state.openSurface(button.dataset.surfaceTarget)));
   }
 
@@ -76,13 +90,53 @@ function setupSurfaceCabinet() {
   });
 }
 
-const PATH_LABELS = {
-  "PATH-1": "Grundbeschreibung",
-  "PATH-2": "Achievements",
-  "PATH-3": "Owner View",
-  "PATH-4": "Human View",
-  "PATH-5": "Science View",
-  "PATH-6": "Builder View"
+function setupCommandTabs() {
+  const tabs = [...document.querySelectorAll("[data-section-target]")];
+  const sections = tabs.map(tab => $(tab.dataset.sectionTarget)).filter(Boolean);
+  if (!tabs.length || !sections.length) return;
+
+  const setActive = (id) => tabs.forEach(tab => {
+    if (tab.dataset.sectionTarget === id) tab.setAttribute("aria-current", "page");
+    else tab.removeAttribute("aria-current");
+  });
+
+  tabs.forEach(tab => tab.addEventListener("click", () => {
+    const id = tab.dataset.sectionTarget;
+    state.openSurface?.(id, false);
+    setActive(id);
+  }));
+
+  const hashTarget = window.location.hash.slice(1);
+  setActive(sections.some(section => section.id === hashTarget) ? hashTarget : sections[0].id);
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActive(visible.target.id);
+    }, { rootMargin: "-16% 0px -68% 0px", threshold: [0, .08, .2] });
+    sections.forEach(section => observer.observe(section));
+  }
+
+  window.addEventListener("hashchange", () => {
+    const id = window.location.hash.slice(1);
+    if (sections.some(section => section.id === id)) setActive(id);
+  });
+}
+
+const READING_TREE = {
+  current: [
+    { id: "BOOK-MISSION_STATEMENT", code: "01", label: "Mission Statement", meta: "Wozu · controlling purpose" },
+    { href: "owner-editorial.html#status", code: "02", label: "Was der erreichte Stand bedeutet", meta: "Owner Editorial · 30.10.2026" },
+    { id: "PATH-3", code: "03", label: "Owner View", meta: "Strategy · Owner Gate · Vision kurz" }
+  ],
+  sources: [
+    { id: "PATH-1", code: "S1", label: "Grundbeschreibung", meta: "Gemeinsamer Rahmen · 29.10." },
+    { id: "PATH-4", code: "S2", label: "Human View", meta: "Perspektivquelle · 12.10." },
+    { id: "PATH-5", code: "S3", label: "Science View", meta: "Fachliche Sicht · 29.10." },
+    { id: "PATH-6", code: "S4", label: "Builder · Tools & Machines", meta: "Ein Einstieg · Vision · UDF · Quellenordnung · 30.10." }
+  ]
 };
 
 const BOOK_CLUSTERS = [
@@ -90,6 +144,14 @@ const BOOK_CLUSTERS = [
   { role: "foundation", label: "FOUNDATIONS & VOICE", title: "Quellenbasis", description: "Mission, Grundbeschreibung, Field Notes und der erhaltene Essay." },
   { role: "strategy", label: "RETURN", title: "Vom Buch zur Plattform", description: "Der strategische Return aus dem Buchprozess." }
 ];
+
+const BUILDER_ACHIEVEMENTS_HREF = "../../../10%20NEXAH%20CORE/NEXAH/BUILDER/B0_BUILDER_DECK/achievements.html";
+
+function openBuilderAchievements() {
+  nodes.previewTitle.textContent = "Builder Achievements · Was hat Scarabäus gebaut?";
+  nodes.previewBody.innerHTML = `<div class="framed-surface-note"><span>B0 · LIVE SOURCE</span><p>Operative Building-Truth-Projektion. Mission Control hält nur Priorität, Aktivierung, Release und Return.</p><a href="${BUILDER_ACHIEVEMENTS_HREF}" target="_blank" rel="noopener">Im Builder Desk öffnen ↗</a></div><iframe class="builder-achievements-frame" src="${BUILDER_ACHIEVEMENTS_HREF}" sandbox="allow-scripts allow-forms allow-pointer-lock allow-popups allow-same-origin" title="Builder Achievements · Was hat Scarabäus gebaut?"></iframe>`;
+  if (!nodes.dialog.open) nodes.dialog.showModal();
+}
 
 const DEEP_DIVE_ORDER = {
   current: ["DD-ACHIEVEMENTS", "DD-A0-FRAMEWORK", "DD-NAVIGATOR-CONTROL", "DD-BOOK-IDEAS", "DD-CHORES", "DD-IDEAS", "DD-PUBLIC", "DD-OUTREACH"]
@@ -102,7 +164,7 @@ const BINDING_LABELS = {
   admitted: "gebunden · aufgenommen",
   supporting: "gebunden · unterstützend",
   candidate: "Kandidat · Review nötig",
-  unbound: "ungebunden",
+  unbound: "nicht NSN-gebunden",
   "excluded-historical": "historisch · nicht gebunden"
 };
 const bindingLabel = (status) => BINDING_LABELS[status] || status || "ungebunden";
@@ -118,6 +180,30 @@ const ELIGIBILITY_LABELS = {
 };
 const eligibilityLabel = (queue) => ELIGIBILITY_LABELS[queue] || queue || "nicht klassifiziert";
 const eligibilityClass = (queue) => `eligibility-${String(queue || "unknown").replace(/[^a-z-]/g, "")}`;
+const DELTA_LABELS = {
+  bound: "exakt gebunden",
+  candidates: "Bindungskandidaten",
+  review: "wirklich ungeklärt",
+  inventory: "Inventory · keine Einzelbindung erwartet",
+  historical: "historisch"
+};
+
+function matchesDelta(item, delta = state.delta) {
+  const binding = item.binding?.status;
+  const eligibility = item.eligibility?.queue;
+  if (!delta) return true;
+  if (delta === "bound") return ["admitted", "supporting"].includes(binding);
+  if (delta === "candidates") return binding === "candidate";
+  if (delta === "review") return binding === "unbound" && eligibility === "review-now";
+  if (delta === "inventory") return binding === "unbound" && eligibility !== "review-now";
+  if (delta === "historical") return binding === "excluded-historical";
+  return true;
+}
+
+function displayedBindingLabel(item) {
+  if (item.binding?.status !== "unbound") return bindingLabel(item.binding?.status);
+  return item.eligibility?.queue === "review-now" ? "ungeklärt · jetzt prüfen" : "Inventory · keine Einzelbindung";
+}
 
 function scienceEntityHref(item) {
   const base = scienceNavigatorBase();
@@ -298,7 +384,27 @@ async function loadItemText(item) {
   }
 }
 
-async function openReader(item) {
+function bindReaderLinks() {
+  nodes.previewBody.querySelectorAll(".reader-document a[href]").forEach(link => {
+    let targetUrl;
+    try { targetUrl = new URL(link.getAttribute("href"), window.location.href); }
+    catch { return; }
+    const target = state.catalog.items.find(item => {
+      if (!item.href || !["markdown", "text"].includes(item.kind)) return false;
+      try { return new URL(item.href, window.location.href).pathname === targetUrl.pathname; }
+      catch { return false; }
+    });
+    if (!target) return;
+    link.dataset.readerSource = target.id;
+    link.addEventListener("click", event => {
+      event.preventDefault();
+      nodes.previewBody.scrollTop = 0;
+      openReader(target);
+    });
+  });
+}
+
+async function openReader(item, anchor = "") {
   nodes.previewTitle.textContent = item.title;
   nodes.previewBody.innerHTML = `<p class="notice">Dokument wird geladen …</p>`;
   if (!nodes.dialog.open) nodes.dialog.showModal();
@@ -315,9 +421,32 @@ async function openReader(item) {
       const target = state.pathItems.find(entry => entry.path === button.dataset.readerPath);
       if (target) { nodes.previewBody.scrollTop = 0; openReader(target); }
     }));
+    bindReaderLinks();
+    if (anchor) document.getElementById(anchor)?.scrollIntoView({block: "start"});
   } catch (error) {
     nodes.previewBody.innerHTML = `<p class="notice">Reader nicht verfügbar: ${escapeHtml(error.message)}</p>`;
   }
+}
+
+function bindPreviewLinks() {
+  const readableKinds = new Set(["markdown", "text", "table", "data"]);
+  document.querySelectorAll("a[data-preview][href]").forEach(link => {
+    let targetUrl;
+    try { targetUrl = new URL(link.getAttribute("href"), window.location.href); }
+    catch { return; }
+    const item = state.catalog.items.find(candidate => {
+      if (!candidate.href || !readableKinds.has(candidate.kind)) return false;
+      try { return new URL(candidate.href, window.location.href).pathname === targetUrl.pathname; }
+      catch { return false; }
+    });
+    if (!item) return;
+    link.dataset.readerSource = item.id;
+    link.addEventListener("click", event => {
+      event.preventDefault();
+      nodes.previewBody.scrollTop = 0;
+      openReader(item, link.dataset.readerAnchor || "");
+    });
+  });
 }
 
 function searchable(item) {
@@ -329,6 +458,7 @@ function searchable(item) {
 function visibleItems() {
   const query = state.search.trim().toLowerCase();
   return state.catalog.items.filter(item =>
+    matchesDelta(item) &&
     (!state.category || item.category === state.category || (state.category === "Book" && item.tags.includes("book-shelf")) || (state.category === "A1" && item.tags.includes("A1")) || (state.category === "Reading Path" && item.tags.includes("master-path")) || (state.category === "Deep Dive" && item.tags.includes("deep-dive"))) &&
     (!state.kind || item.kind === state.kind) &&
     (!state.repo || item.repo === state.repo) &&
@@ -343,7 +473,7 @@ function visibleItems() {
 function itemCard(item, a1 = false) {
   if (a1) return `<button class="a1-card" data-path="${escapeHtml(item.path)}"><span class="badge a1">${escapeHtml(item.kind)}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description || item.state)}</p></button>`;
   return `<button class="card ${state.selected?.path === item.path ? "selected" : ""}" data-path="${escapeHtml(item.path)}">
-    <div class="card-top"><span class="badge ${badgeClass(item)}">${escapeHtml(item.category)} · ${escapeHtml(item.kind)}</span><span class="badge ${bindingBadgeClass(item.binding?.status)}">${escapeHtml(bindingLabel(item.binding?.status))}</span></div>
+    <div class="card-top"><span class="badge ${badgeClass(item)}">${escapeHtml(item.category)} · ${escapeHtml(item.kind)}</span><span class="badge ${bindingBadgeClass(item.binding?.status)}">${escapeHtml(displayedBindingLabel(item))}</span></div>
     <h3>${escapeHtml(item.title)}</h3><p class="eligibility-line"><span class="badge ${eligibilityClass(item.eligibility?.queue)}">${escapeHtml(item.eligibility?.priority || "—")} · ${escapeHtml(eligibilityLabel(item.eligibility?.queue))}</span> ${escapeHtml(item.eligibility?.theme || "")}</p><p>${escapeHtml(item.description || item.authority || item.state)}</p><p class="card-path">${escapeHtml(item.repo)} · ${escapeHtml(item.path)}</p>
   </button>`;
 }
@@ -351,7 +481,8 @@ function itemCard(item, a1 = false) {
 function render() {
   const items = visibleItems();
   const shown = items.slice(0, state.limit);
-  nodes.result.textContent = `${items.length} Treffer${items.length > shown.length ? ` · erste ${shown.length}` : ""}`;
+  const deltaPrefix = state.delta ? `${DELTA_LABELS[state.delta]} · ` : "";
+  nodes.result.textContent = `${deltaPrefix}${items.length} Treffer${items.length > shown.length ? ` · erste ${shown.length}` : ""}`;
   nodes.cards.innerHTML = shown.map(item => itemCard(item)).join("") || `<p class="notice">Keine Treffer für diese Auswahl.</p>`;
   nodes.cards.querySelectorAll("[data-path]").forEach(button => button.addEventListener("click", () => selectByPath(button.dataset.path)));
 }
@@ -368,9 +499,9 @@ function selectByPath(path) {
   const bindingTargets = binding.targets?.length ? `<div class="binding-targets"><h3>Navigator-Ziele</h3>${binding.targets.map(target => `<article><strong>${escapeHtml(target.title || target.entity_id)}</strong><span>${escapeHtml(target.entity_id)}${target.module_id ? ` · ${escapeHtml(target.module_id)}` : ""}</span>${target.claim_ceiling ? `<p>${escapeHtml(target.claim_ceiling)}</p>` : ""}</article>`).join("")}</div>` : "";
   nodes.detail.innerHTML = `<p class="eyebrow">${escapeHtml(item.category)} · ${escapeHtml(item.id)}</p><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(item.description || "Keine Kurzbeschreibung registriert.")}</p>
     <div class="actions">${item.href ? `<a class="button" href="${item.href}" target="_blank" rel="noopener">Original öffnen</a>` : ""}${previewable && item.href ? `<button class="button secondary" id="previewButton">Vorschau</button>` : ""}${navigatorHref ? `<a class="button science-button" href="${navigatorHref}">${binding.entity_ids?.length ? "Im Science Navigator" : "Science Navigator"}</a>` : ""}</div>
-    <section class="binding-detail ${bindingBadgeClass(binding.status)}"><p class="eyebrow">BINDING STATUS</p><h3>${escapeHtml(bindingLabel(binding.status))}</h3><p>${escapeHtml(binding.basis || "Keine Binding-Angabe.")} · Konfidenz: ${escapeHtml(binding.confidence || "keine")}</p></section>
+    <section class="binding-detail ${bindingBadgeClass(binding.status)}"><p class="eyebrow">BINDING STATUS</p><h3>${escapeHtml(displayedBindingLabel(item))}</h3><p>${escapeHtml(binding.basis || "Keine Binding-Angabe.")} · Konfidenz: ${escapeHtml(binding.confidence || "keine")}</p></section>
     <section class="eligibility-detail ${eligibilityClass(eligibility.queue)}"><p class="eyebrow">ELIGIBILITY PASS</p><h3>${escapeHtml(eligibility.priority || "—")} · ${escapeHtml(eligibilityLabel(eligibility.queue))}</h3><p>${escapeHtml(eligibility.basis || "Keine Review-Klassifikation.")}</p></section>
-    <dl><dt>Quellstatus</dt><dd>${escapeHtml(item.state)}</dd><dt>Bindung</dt><dd>${escapeHtml(bindingLabel(binding.status))}</dd><dt>Review-Klasse</dt><dd>${escapeHtml(eligibilityLabel(eligibility.queue))}</dd><dt>Quellklasse</dt><dd>${escapeHtml(eligibility.source_class || "—")}</dd><dt>Themenbahn</dt><dd>${escapeHtml(eligibility.theme || "—")}</dd><dt>Familie</dt><dd>${escapeHtml(eligibility.family_key || "—")}</dd><dt>Variante</dt><dd>${escapeHtml(eligibility.variant_role || "—")}</dd><dt>Rolle</dt><dd>${escapeHtml((binding.roles || []).join(" · ") || "—")}</dd><dt>Entität</dt><dd>${escapeHtml((binding.entity_ids || []).join(" · ") || "—")}</dd><dt>Modul</dt><dd>${escapeHtml((binding.module_ids || []).join(" · ") || "—")}</dd><dt>Familien</dt><dd>${escapeHtml((binding.family_ids || []).join(" · ") || "—")}</dd><dt>Typ</dt><dd>${escapeHtml(item.kind)}</dd><dt>Repository</dt><dd>${escapeHtml(item.repo)}</dd><dt>Autorität</dt><dd>${escapeHtml(item.authority || "nicht angegeben")}</dd><dt>Größe</dt><dd>${bytes(item.bytes)}</dd><dt>Pfad</dt><dd>${escapeHtml(item.path)}</dd>${item.sha256 ? `<dt>SHA-256</dt><dd>${escapeHtml(item.sha256)}</dd>` : ""}</dl>${bindingTargets}${metadata}`;
+    <dl><dt>Quellstatus</dt><dd>${escapeHtml(item.state)}</dd><dt>Bindung</dt><dd>${escapeHtml(displayedBindingLabel(item))}</dd><dt>Review-Klasse</dt><dd>${escapeHtml(eligibilityLabel(eligibility.queue))}</dd><dt>Quellklasse</dt><dd>${escapeHtml(eligibility.source_class || "—")}</dd><dt>Themenbahn</dt><dd>${escapeHtml(eligibility.theme || "—")}</dd><dt>Familie</dt><dd>${escapeHtml(eligibility.family_key || "—")}</dd><dt>Variante</dt><dd>${escapeHtml(eligibility.variant_role || "—")}</dd><dt>Rolle</dt><dd>${escapeHtml((binding.roles || []).join(" · ") || "—")}</dd><dt>Entität</dt><dd>${escapeHtml((binding.entity_ids || []).join(" · ") || "—")}</dd><dt>Modul</dt><dd>${escapeHtml((binding.module_ids || []).join(" · ") || "—")}</dd><dt>Familien</dt><dd>${escapeHtml((binding.family_ids || []).join(" · ") || "—")}</dd><dt>Typ</dt><dd>${escapeHtml(item.kind)}</dd><dt>Repository</dt><dd>${escapeHtml(item.repo)}</dd><dt>Autorität</dt><dd>${escapeHtml(item.authority || "nicht angegeben")}</dd><dt>Größe</dt><dd>${bytes(item.bytes)}</dd><dt>Pfad</dt><dd>${escapeHtml(item.path)}</dd>${item.sha256 ? `<dt>SHA-256</dt><dd>${escapeHtml(item.sha256)}</dd>` : ""}</dl>${bindingTargets}${metadata}`;
   $("previewButton")?.addEventListener("click", () => item.kind === "markdown" ? openReader(item) : preview(item));
   render();
 }
@@ -398,10 +529,52 @@ async function preview(item) {
   }
 }
 
+function clearSourceFilters() {
+  state.category = "";
+  state.search = "";
+  state.kind = "";
+  state.repo = "";
+  state.binding = "";
+  state.eligibility = "";
+  state.priority = "";
+  state.theme = "";
+  nodes.search.value = "";
+}
+
+function renderSourceDelta() {
+  if (!nodes.sourceDelta || !state.catalog) return;
+  const views = [
+    { id: "bound", code: "01 · NSN EXACT", title: "Exakt gebunden", description: "Aufgenommene oder unterstützende Locators mit exakter NSN-Zuordnung." },
+    { id: "candidates", code: "02 · MATCH", title: "Bindungskandidaten", description: "Konservative Hash- oder Dateinamen-Treffer; Review vor jeder Bindung." },
+    { id: "review", code: "03 · TRUE DELTA", title: "Wirklich ungeklärt", description: "Nicht gebunden und als jetzt zu prüfender Einzelgegenstand klassifiziert." },
+    { id: "inventory", code: "04 · INVENTORY", title: "Keine Einzelbindung erwartet", description: "Support, Sammlungen, Varianten, Builds und Familien bleiben als Locator erhalten." },
+    { id: "historical", code: "05 · HISTORY", title: "Historisch", description: "Provenienz bleibt auffindbar; keine aktuelle NSN-Aufnahme erwartet." }
+  ];
+  nodes.sourceDelta.innerHTML = views.map(view => {
+    const count = state.catalog.items.filter(item => matchesDelta(item, view.id)).length;
+    return `<button type="button" class="source-delta-card delta-${view.id} ${state.delta === view.id ? "active" : ""}" data-delta-view="${view.id}"><small>${view.code}</small><strong>${count}</strong><h3>${view.title}</h3><p>${view.description}</p><span>Locators ansehen →</span></button>`;
+  }).join("");
+  nodes.sourceDelta.querySelectorAll("[data-delta-view]").forEach(button => button.addEventListener("click", () => {
+    clearSourceFilters();
+    state.delta = button.dataset.deltaView;
+    setupFilters();
+    nodes.sourceInventory.open = true;
+    renderSourceDelta();
+    render();
+    nodes.sourceInventory.scrollIntoView({behavior: "smooth", block: "start"});
+  }));
+}
+
+function leaveDeltaView() {
+  if (!state.delta) return;
+  state.delta = "";
+  renderSourceDelta();
+}
+
 function setupFilters() {
   const categories = ["", "Book", "Reading Path", "Deep Dive", "Source Field", "Controlled Source", "Work", "HTML", "3D"];
   nodes.categories.innerHTML = categories.map(value => `<button class="chip ${value === state.category ? "active" : ""}" data-category="${escapeHtml(value)}">${value || "Alle"}${value ? ` · ${state.catalog.stats[value] || 0}` : ""}</button>`).join("");
-  nodes.categories.querySelectorAll("button").forEach(button => button.addEventListener("click", () => { state.category = button.dataset.category; setupFilters(); render(); }));
+  nodes.categories.querySelectorAll("button").forEach(button => button.addEventListener("click", () => { leaveDeltaView(); state.category = button.dataset.category; setupFilters(); render(); }));
   const kinds = [...new Set(state.catalog.items.map(item => item.kind))].sort();
   nodes.kind.innerHTML = `<option value="">Alle Typen</option>` + kinds.map(value => `<option>${escapeHtml(value)}</option>`).join("");
   nodes.repo.innerHTML = `<option value="">Alle Repositories</option>` + state.catalog.repositories.map(value => `<option>${escapeHtml(value)}</option>`).join("");
@@ -419,16 +592,20 @@ function renderBindingBridge() {
   const order = ["admitted", "supporting", "candidate", "unbound", "excluded-historical"];
   nodes.bindingSummary.innerHTML = order.map(status => `<button class="binding-metric ${bindingBadgeClass(status)}" data-binding-status="${status}"><strong>${state.catalog.binding_stats[status] || 0}</strong><span>${escapeHtml(bindingLabel(status))}</span></button>`).join("");
   nodes.bindingSummary.querySelectorAll("[data-binding-status]").forEach(button => button.addEventListener("click", () => {
+    leaveDeltaView();
     state.binding = button.dataset.bindingStatus;
     nodes.binding.value = state.binding;
+    nodes.sourceInventory.open = true;
     render();
     state.openSurface?.("source-field");
   }));
   const eligibilityOrder = ["review-now", "family-review", "support-review", "collection-bind", "not-individual", "defer", "closed"];
   nodes.eligibilitySummary.innerHTML = eligibilityOrder.map(queue => `<button class="eligibility-metric ${eligibilityClass(queue)}" data-eligibility-queue="${queue}"><strong>${state.catalog.eligibility_stats[queue] || 0}</strong><span>${escapeHtml(eligibilityLabel(queue))}</span></button>`).join("");
   nodes.eligibilitySummary.querySelectorAll("[data-eligibility-queue]").forEach(button => button.addEventListener("click", () => {
+    leaveDeltaView();
     state.eligibility = button.dataset.eligibilityQueue;
     nodes.eligibility.value = state.eligibility;
+    nodes.sourceInventory.open = true;
     render();
     state.openSurface?.("source-field");
   }));
@@ -462,38 +639,42 @@ function renderDeepDives() {
   }));
 }
 
-function setupOwnerPostits() {
-  document.querySelectorAll(".owner-postit[data-source-id]").forEach(link => link.addEventListener("click", event => {
-    const item = state.catalog.items.find(entry => entry.id === link.dataset.sourceId);
-    if (!item) return;
-    event.preventDefault();
-    openReader(item);
-  }));
-}
-
 async function init() {
   try {
     const loaded = await loadCatalog();
     state.catalog = loaded.catalog;
+    bindPreviewLinks();
     const truth = state.catalog.truth;
     nodes.truth.innerHTML = `<strong>${escapeHtml(truth.status)}</strong><span>${escapeHtml(truth.phase)}<br>ACTIVE PRIORITY: ${escapeHtml(truth.active_priority)}<br>AS OF: ${escapeHtml(state.catalog.as_of)}<br>SOURCE: ${escapeHtml(loaded.source)}</span>`;
-    nodes.counts.textContent = `${state.catalog.items.length} LOCATORS · ${state.catalog.stats.HTML || 0} HTML · ${state.catalog.stats["3D"] || 0} 3D`;
+    nodes.counts.textContent = `${state.catalog.items.length} LOCATORS · BINDING BASE ${state.catalog.science_navigator.entity_count}/${state.catalog.science_navigator.relation_count} · COMPOSED ${state.catalog.science_navigator.composed_entity_count}/${state.catalog.science_navigator.composed_relation_count}`;
+    renderSourceDelta();
     renderBindingBridge();
     renderDeepDives();
-    setupOwnerPostits();
-    state.pathItems = state.catalog.items.filter(item => item.tags.includes("master-path")).sort((a,b) => (a.tags.find(tag => tag.startsWith("step-")) || "").localeCompare(b.tags.find(tag => tag.startsWith("step-")) || ""));
-    nodes.masterPath.innerHTML = state.pathItems.map(item => `<button data-reader-path="${escapeHtml(item.path)}"><small>0${escapeHtml(item.id.replace("PATH-", ""))}</small>${escapeHtml(PATH_LABELS[item.id] || item.title)}<span>Lesen →</span></button>`).join("");
-    nodes.masterPath.querySelectorAll("[data-reader-path]").forEach(button => button.addEventListener("click", () => {
+    const readingIds = [...READING_TREE.current, ...READING_TREE.sources].map(entry => entry.id).filter(Boolean);
+    state.pathItems = readingIds.map(id => state.catalog.items.find(item => item.id === id)).filter(Boolean);
+    const renderReadingEntry = entry => {
+      const content = `<small>${escapeHtml(entry.code)}</small><strong>${escapeHtml(entry.label)}</strong><span>${escapeHtml(entry.meta)}</span><em>${entry.href ? "Öffnen ↗" : "Im Reader lesen →"}</em>`;
+      if (entry.href) return `<a href="${escapeHtml(entry.href)}">${content}</a>`;
+      const item = state.catalog.items.find(candidate => candidate.id === entry.id);
+      return item ? `<button data-reader-path="${escapeHtml(item.path)}">${content}</button>` : "";
+    };
+    nodes.masterPath.innerHTML = READING_TREE.current.map(renderReadingEntry).join("");
+    nodes.sourceReadingPath.innerHTML = READING_TREE.sources.map(renderReadingEntry).join("");
+    [nodes.masterPath, nodes.sourceReadingPath].forEach(path => path.querySelectorAll("[data-reader-path]").forEach(button => button.addEventListener("click", () => {
       const item = state.pathItems.find(entry => entry.path === button.dataset.readerPath);
       if (item) openReader(item);
-    }));
+    })));
     nodes.startMasterPath?.addEventListener("click", () => {
       if (state.pathItems[0]) openReader(state.pathItems[0]);
     });
-    $("openAchievementsReader")?.addEventListener("click", () => {
-      const achievements = state.pathItems.find(item => item.id === "PATH-2");
-      if (achievements) openReader(achievements);
-    });
+    const requestedReader = new URLSearchParams(window.location.search).get("reader");
+    if (requestedReader) {
+      const requestedItem = state.catalog.items.find(item => item.id === requestedReader);
+      if (requestedItem && ["markdown", "text"].includes(requestedItem.kind)) {
+        state.openSurface?.("reading-path", false);
+        openReader(requestedItem);
+      }
+    }
     const bookItems = state.catalog.items.filter(item => item.tags.includes("book-shelf"));
     nodes.a1Grid.innerHTML = BOOK_CLUSTERS.map(cluster => {
       const items = bookItems.filter(item => item.tags.includes(`book-role-${cluster.role}`));
@@ -517,14 +698,17 @@ async function init() {
   }
 }
 
+prioritizeOperationalRoutes();
 setupSurfaceCabinet();
-nodes.search.addEventListener("input", event => { state.search = event.target.value; render(); });
-nodes.kind.addEventListener("change", event => { state.kind = event.target.value; render(); });
-nodes.repo.addEventListener("change", event => { state.repo = event.target.value; render(); });
-nodes.binding.addEventListener("change", event => { state.binding = event.target.value; render(); });
-nodes.eligibility.addEventListener("change", event => { state.eligibility = event.target.value; render(); });
-nodes.priority.addEventListener("change", event => { state.priority = event.target.value; render(); });
-nodes.theme.addEventListener("change", event => { state.theme = event.target.value; render(); });
+setupCommandTabs();
+nodes.search.addEventListener("input", event => { leaveDeltaView(); state.search = event.target.value; render(); });
+nodes.kind.addEventListener("change", event => { leaveDeltaView(); state.kind = event.target.value; render(); });
+nodes.repo.addEventListener("change", event => { leaveDeltaView(); state.repo = event.target.value; render(); });
+nodes.binding.addEventListener("change", event => { leaveDeltaView(); state.binding = event.target.value; render(); });
+nodes.eligibility.addEventListener("change", event => { leaveDeltaView(); state.eligibility = event.target.value; render(); });
+nodes.priority.addEventListener("change", event => { leaveDeltaView(); state.priority = event.target.value; render(); });
+nodes.theme.addEventListener("change", event => { leaveDeltaView(); state.theme = event.target.value; render(); });
 nodes.closePreview.addEventListener("click", () => nodes.dialog.close());
 nodes.dialog.addEventListener("click", event => { if (event.target === nodes.dialog) nodes.dialog.close(); });
+document.querySelectorAll("[data-builder-achievements]").forEach(button => button.addEventListener("click", openBuilderAchievements));
 init();
