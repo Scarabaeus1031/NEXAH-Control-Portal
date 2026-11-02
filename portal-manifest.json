@@ -1,7 +1,7 @@
 {
   "schema": "nexah.owner-read-portal.manifest.v1",
   "status": "PUBLIC RELEASE / READ ONLY / NO CONTROL",
-  "built_at": "2026-11-01T07:27:47.999Z",
+  "built_at": "2026-11-02T09:58:09.110Z",
   "authority": "projection-only; authority remains with owning sources",
   "surface_count": 3,
   "scope": [
@@ -11,17 +11,17 @@
   ],
   "scarabaeus_return": "https://www.scarabaeus1033.net",
   "file_count": 30,
-  "bytes": 11074634,
+  "bytes": 11165936,
   "sources": [
     {
       "id": "MISSION_CONTROL",
       "label": "MISSION CONTROL",
       "repository": "00 EXECUTIVE/NEXAH-Mission-Control",
       "branch": "codex/mission-control-status-sync",
-      "revision": "cb1a54476b304c253c84fc56bcb8389fe7deb4c0",
+      "revision": "9fdf91b8f85015ccdfd389ab24102e26cb321f98",
       "dirty": false,
       "entry": "00 EXECUTIVE/NEXAH-Mission-Control/INTERNAL_NAVIGATOR/index.html",
-      "entry_sha256": "54f6d2ce3343e669eee09ff8b25eea7f00ce477bca93f033b130b41ea1b71f2f"
+      "entry_sha256": "b8bacdc2b837dbfa554476750cc5a0a94e3c3124d2e1f06538539f387a7cf027"
     },
     {
       "id": "B0_BUILDER_DECK",
@@ -38,11 +38,11 @@
       "label": "A0 SCIENCE DESK",
       "repository": "30 SCIENCE LAB/NEXAH-Science-Lab",
       "branch": "codex/grid-observatory-mission-control",
-      "revision": "0104e7968602c2c8ae71d8ae75b359dbaf55cf5b",
+      "revision": "aa7c388b5b95e803a7d6278f576edc889237c5af",
       "dirty": false,
       "entry": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_RESEARCH_DESK.html",
-      "entry_sha256": "9463cc253d28dfd86f1d3b36df75079d46de5e308649bddc2f5ef1c959a1988a"
+      "entry_sha256": "225673bca40f892577c669ef846aa88e69ee346287f8689f32a68d079fdef649"
     }
   ],
-  "released_at": "2026-11-01T07:27:48.123Z"
+  "released_at": "2026-11-02T09:58:09.265Z"
 }

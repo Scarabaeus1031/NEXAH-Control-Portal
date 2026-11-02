@@ -484,6 +484,19 @@ section { margin-top: 28px; }
 .visual-grid figcaption strong { color: var(--ink); }
 .visual-grid figcaption span { color: var(--muted); font-size: 12px; }
 .visual-boundary { margin: 14px 0 0; color: var(--faint); font: 11px/1.5 ui-monospace, monospace; text-align: right; }
+.ioi-mission-projection { overflow: hidden; border-color: rgba(106,174,252,.48); background: radial-gradient(circle at 14% 18%, rgba(73,214,239,.12), transparent 34rem), radial-gradient(circle at 82% 28%, rgba(168,117,255,.12), transparent 30rem), rgba(4,13,22,.94); }
+.ioi-mission-grid { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(290px,.75fr); gap: 18px; align-items: stretch; }
+.ioi-mission-hero { margin: 0; overflow: hidden; border: 1px solid rgba(106,174,252,.34); border-radius: 14px; background: #01070c; }
+.ioi-mission-hero img { display: block; width: 100%; height: 100%; min-height: 320px; object-fit: cover; }
+.ioi-mission-copy { display: flex; flex-direction: column; justify-content: center; padding: 22px; border: 1px solid rgba(237,114,182,.28); border-radius: 14px; background: linear-gradient(145deg, rgba(49,214,208,.06), rgba(168,117,255,.07)); }
+.ioi-mission-copy h3 { margin: 8px 0 10px; font: 600 clamp(1.65rem,3vw,2.7rem)/1.02 Georgia,serif; }
+.ioi-mission-copy > p { color: var(--muted); }
+.ioi-mission-route { color: var(--cyan) !important; font: 800 12px/1.5 ui-monospace,monospace; letter-spacing: .08em; }
+.ioi-mission-modal { margin: 14px 0 4px; overflow: hidden; border: 1px solid rgba(255,255,255,.24); border-radius: 10px; background: #02090f; }
+.ioi-mission-modal img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.ioi-mission-modal figcaption { padding: 8px 10px; color: var(--muted); font: 700 10px/1.4 ui-monospace,monospace; letter-spacing: .06em; }
+.ioi-mission-copy .portal-actions { margin-top: 10px; }
+.ioi-mission-copy .visual-boundary { margin-top: 16px; text-align: left; }
 .deep-dives { scroll-margin-top: 18px; background: radial-gradient(circle at 15% 0, rgba(49,214,208,.08), transparent 30rem), rgba(7,18,24,.9); }
 .deep-dive-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .deep-dive-group { margin: 0; padding: 17px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
@@ -761,6 +774,7 @@ dialog::backdrop { background: rgba(0,0,0,.75); backdrop-filter: blur(4px); }
   .controls { grid-template-columns: 1fr 1fr; }
   .visual-grid { grid-template-columns: 1fr 1fr; }
   .visual-grid figure:first-child { grid-column: 1 / -1; }
+  .ioi-mission-grid { grid-template-columns: 1fr; }
   .bridge-flow.status-flow { grid-template-columns: 1fr 1fr; }
   .bridge-flow.status-flow > b { display: none; }
   .guidance-sequence { grid-template-columns: 1fr; }
@@ -789,6 +803,7 @@ dialog::backdrop { background: rgba(0,0,0,.75); backdrop-filter: blur(4px); }
   .source-inventory > summary { display: grid; grid-template-columns: 1fr auto; }
   .source-inventory > summary b { grid-column: 1 / -1; margin-left: 0; }
   .visual-grid figure:first-child { grid-column: auto; }
+  .ioi-mission-hero img { min-height: 220px; }
   .bridge-flow:not(.status-flow) > b { display: block; transform: rotate(90deg); justify-self: center; }
   .eligibility-head { display: block; }
   .eligibility-head p:last-child { margin-top: 8px; text-align: left; }
