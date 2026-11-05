@@ -1,7 +1,7 @@
 {
   "schema": "nexah.owner-read-portal.manifest.v1",
   "status": "PUBLIC RELEASE / READ ONLY / NO CONTROL",
-  "built_at": "2026-11-02T20:18:32.230Z",
+  "built_at": "2026-11-05T11:39:46.863Z",
   "authority": "projection-only; authority remains with owning sources",
   "surface_count": 3,
   "scope": [
@@ -10,25 +10,25 @@
     "B0 BUILDER DECK"
   ],
   "scarabaeus_return": "https://www.scarabaeus1033.net",
-  "file_count": 30,
-  "bytes": 11169774,
+  "file_count": 33,
+  "bytes": 11334936,
   "sources": [
     {
       "id": "MISSION_CONTROL",
       "label": "MISSION CONTROL",
       "repository": "00 EXECUTIVE/NEXAH-Mission-Control",
       "branch": "codex/mission-control-status-sync",
-      "revision": "9fdf91b8f85015ccdfd389ab24102e26cb321f98",
+      "revision": "a6113ddddceb318475aef7897c2d965077527b9b",
       "dirty": false,
       "entry": "00 EXECUTIVE/NEXAH-Mission-Control/INTERNAL_NAVIGATOR/index.html",
-      "entry_sha256": "b8bacdc2b837dbfa554476750cc5a0a94e3c3124d2e1f06538539f387a7cf027"
+      "entry_sha256": "c57da0feca8ee5468fb46c4e9854f918803353b082dd09548a31d38922c2cfb3"
     },
     {
       "id": "B0_BUILDER_DECK",
       "label": "B0 BUILDER DECK",
       "repository": "10 NEXAH CORE/NEXAH",
       "branch": "codex/core-readme-currentness",
-      "revision": "3e80e9b226a102bcb5667a78fede6bd8a1903fd1",
+      "revision": "f6358f663526c6b6f08c5f478c5fe8ce8c5c9fcb",
       "dirty": false,
       "entry": "10 NEXAH CORE/NEXAH/BUILDER/B0_BUILDER_DECK/index.html",
       "entry_sha256": "2e9f041955de39494cebedafe4dad5b482f7878c413b02212fc05e05451ef48d"
@@ -38,11 +38,11 @@
       "label": "A0 SCIENCE DESK",
       "repository": "30 SCIENCE LAB/NEXAH-Science-Lab",
       "branch": "codex/grid-observatory-mission-control",
-      "revision": "6411b7dae89f1809010a355af2a419df0e080f86",
+      "revision": "45c844ea2f7d7df379e4cf335a7a267f77c36d4c",
       "dirty": false,
       "entry": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_RESEARCH_DESK.html",
-      "entry_sha256": "596d209d8bf816a6c77501b0d80db89ce22c841c67d3da76019b4825c34d477d"
+      "entry_sha256": "710098964a7889e863d7478065b4ed19fadaa9854fcd7e9b4bd822ad84b343fd"
     }
   ],
-  "released_at": "2026-11-02T20:18:32.445Z"
+  "released_at": "2026-11-05T11:39:47.019Z"
 }
