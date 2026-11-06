@@ -1,7 +1,7 @@
 {
   "schema": "nexah.owner-read-portal.manifest.v1",
   "status": "PUBLIC RELEASE / READ ONLY / NO CONTROL",
-  "built_at": "2026-11-06T14:58:35.747Z",
+  "built_at": "2026-11-06T20:51:28.646Z",
   "authority": "projection-only; authority remains with owning sources",
   "surface_count": 3,
   "scope": [
@@ -11,14 +11,14 @@
   ],
   "scarabaeus_return": "https://www.scarabaeus1033.net",
   "file_count": 33,
-  "bytes": 11347201,
+  "bytes": 11350703,
   "sources": [
     {
       "id": "MISSION_CONTROL",
       "label": "MISSION CONTROL",
       "repository": "00 EXECUTIVE/NEXAH-Mission-Control",
       "branch": "codex/mission-control-status-sync",
-      "revision": "0812f28fd5de3cda31e90b435a8f8c8fc356648e",
+      "revision": "554950f1a069b62f3a98135e16856d7097085383",
       "dirty": false,
       "entry": "00 EXECUTIVE/NEXAH-Mission-Control/INTERNAL_NAVIGATOR/index.html",
       "entry_sha256": "c57da0feca8ee5468fb46c4e9854f918803353b082dd09548a31d38922c2cfb3"
@@ -28,10 +28,10 @@
       "label": "B0 BUILDER DECK",
       "repository": "10 NEXAH CORE/NEXAH",
       "branch": "codex/core-readme-currentness",
-      "revision": "f6358f663526c6b6f08c5f478c5fe8ce8c5c9fcb",
+      "revision": "bb79480dd0cdd1c8b1d5cc71073936e051fe1ac0",
       "dirty": false,
       "entry": "10 NEXAH CORE/NEXAH/BUILDER/B0_BUILDER_DECK/index.html",
-      "entry_sha256": "2e9f041955de39494cebedafe4dad5b482f7878c413b02212fc05e05451ef48d"
+      "entry_sha256": "5e3e2c8c2fe48538b43732f3d899ee11bacd11c4b6d9bb3ffd3e892ad5b2e6b2"
     },
     {
       "id": "A0_SCIENCE_DESK",
@@ -44,5 +44,5 @@
       "entry_sha256": "710098964a7889e863d7478065b4ed19fadaa9854fcd7e9b4bd822ad84b343fd"
     }
   ],
-  "released_at": "2026-11-06T14:58:35.906Z"
+  "released_at": "2026-11-06T20:51:28.757Z"
 }
