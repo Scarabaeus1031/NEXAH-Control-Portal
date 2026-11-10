@@ -1,7 +1,7 @@
 {
   "schema": "nexah.owner-read-portal.manifest.v1",
   "status": "PUBLIC RELEASE / READ ONLY / NO CONTROL",
-  "built_at": "2026-11-09T02:08:32.827Z",
+  "built_at": "2026-11-10T10:31:44.849Z",
   "authority": "projection-only; authority remains with owning sources",
   "surface_count": 3,
   "scope": [
@@ -11,14 +11,14 @@
   ],
   "scarabaeus_return": "https://www.scarabaeus1033.net",
   "file_count": 33,
-  "bytes": 11383958,
+  "bytes": 11385187,
   "sources": [
     {
       "id": "MISSION_CONTROL",
       "label": "MISSION CONTROL",
       "repository": "00 EXECUTIVE/NEXAH-Mission-Control",
       "branch": "codex/mission-control-status-sync",
-      "revision": "7a64a9407bb3137c120b06c3b9ea8beef69a5733",
+      "revision": "d3877d72a96067878d04a982bfcf59d9d2acd024",
       "dirty": false,
       "entry": "00 EXECUTIVE/NEXAH-Mission-Control/INTERNAL_NAVIGATOR/index.html",
       "entry_sha256": "c57da0feca8ee5468fb46c4e9854f918803353b082dd09548a31d38922c2cfb3"
@@ -28,7 +28,7 @@
       "label": "B0 BUILDER DECK",
       "repository": "10 NEXAH CORE/NEXAH",
       "branch": "codex/core-readme-currentness",
-      "revision": "bb79480dd0cdd1c8b1d5cc71073936e051fe1ac0",
+      "revision": "9df8c0dca5a0578e3005d651eb29bec9d2264af3",
       "dirty": false,
       "entry": "10 NEXAH CORE/NEXAH/BUILDER/B0_BUILDER_DECK/index.html",
       "entry_sha256": "5e3e2c8c2fe48538b43732f3d899ee11bacd11c4b6d9bb3ffd3e892ad5b2e6b2"
@@ -44,5 +44,5 @@
       "entry_sha256": "710098964a7889e863d7478065b4ed19fadaa9854fcd7e9b4bd822ad84b343fd"
     }
   ],
-  "released_at": "2026-11-09T02:08:32.983Z"
+  "released_at": "2026-11-10T10:31:45.005Z"
 }
