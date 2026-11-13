@@ -1,7 +1,7 @@
 {
   "schema": "nexah.owner-read-portal.manifest.v1",
   "status": "PUBLIC RELEASE / READ ONLY / NO CONTROL",
-  "built_at": "2026-11-12T22:27:06.556Z",
+  "built_at": "2026-11-13T02:54:06.025Z",
   "authority": "projection-only; authority remains with owning sources",
   "surface_count": 3,
   "scope": [
@@ -18,7 +18,7 @@
       "label": "MISSION CONTROL",
       "repository": "00 EXECUTIVE/NEXAH-Mission-Control",
       "branch": "codex/mission-control-status-sync",
-      "revision": "42dc6f165b1e746f82a89343a608a5080f26aa60",
+      "revision": "e45ad560bf570ca6d96715688ec190ed62c1946a",
       "dirty": false,
       "entry": "00 EXECUTIVE/NEXAH-Mission-Control/INTERNAL_NAVIGATOR/index.html",
       "entry_sha256": "c57da0feca8ee5468fb46c4e9854f918803353b082dd09548a31d38922c2cfb3"
@@ -44,5 +44,5 @@
       "entry_sha256": "710098964a7889e863d7478065b4ed19fadaa9854fcd7e9b4bd822ad84b343fd"
     }
   ],
-  "released_at": "2026-11-12T22:27:06.757Z"
+  "released_at": "2026-11-13T02:54:06.192Z"
 }
