@@ -1,0 +1,17 @@
+NEXAH Control Portal
+Copyright 2026 Thomas K. R. Hofmann and contributors
+
+The NEXAH Control Portal is a public, read-only projection. Authority remains
+with the exact owning sources and revisions recorded in portal-manifest.json.
+
+Canonical repository:
+https://github.com/Scarabaeus1031/NEXAH-Control-Portal
+
+The private NEXAH Mission Control repository remains an internal operational
+source. Inclusion of selected public-safe snapshots in this portal does not
+open-license the source repository, disclose non-projected material, or create
+a public control route.
+
+Licensing follows material type and provenance. See LICENSES.md. Third-party
+notices and artifact-specific provenance records remain attached to their
+respective materials.

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+title: "NEXAH Control Portal"
+message: "If you reference the portal, cite this repository and the exact source revisions recorded in portal-manifest.json."
+type: software
+abstract: "A public, read-only projection of selected NEXAH Mission Control, A0 Science Desk, and B0 Builder Deck surfaces."
+authors:
+  - family-names: Hofmann
+    given-names: Thomas K. R.
+year: 2026
+repository-code: https://github.com/Scarabaeus1031/NEXAH-Control-Portal
+url: https://github.com/Scarabaeus1031/NEXAH-Control-Portal
+keywords:
+  - NEXAH
+  - read-only portal
+  - provenance
+  - source projection
