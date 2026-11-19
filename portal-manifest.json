@@ -1,7 +1,7 @@
 {
   "schema": "nexah.owner-read-portal.manifest.v1",
   "status": "PUBLIC RELEASE / READ ONLY / NO CONTROL",
-  "built_at": "2026-11-16T06:52:14.726Z",
+  "built_at": "2026-11-19T21:47:26.637Z",
   "authority": "projection-only; authority remains with owning sources",
   "surface_count": 3,
   "scope": [
@@ -11,14 +11,14 @@
   ],
   "scarabaeus_return": "https://www.scarabaeus1033.net",
   "file_count": 33,
-  "bytes": 11510778,
+  "bytes": 11815621,
   "sources": [
     {
       "id": "MISSION_CONTROL",
       "label": "MISSION CONTROL",
       "repository": "00 EXECUTIVE/NEXAH-Mission-Control",
       "branch": "codex/mission-control-status-sync",
-      "revision": "028f04693a010db8f5ea12a98b0384aafe56e765",
+      "revision": "faa6afd1e9942166e13b8799702c0b91457ee33c",
       "dirty": false,
       "entry": "00 EXECUTIVE/NEXAH-Mission-Control/INTERNAL_NAVIGATOR/index.html",
       "entry_sha256": "c57da0feca8ee5468fb46c4e9854f918803353b082dd09548a31d38922c2cfb3"
@@ -44,5 +44,5 @@
       "entry_sha256": "710098964a7889e863d7478065b4ed19fadaa9854fcd7e9b4bd822ad84b343fd"
     }
   ],
-  "released_at": "2026-11-16T06:52:14.896Z"
+  "released_at": "2026-11-19T21:47:26.785Z"
 }
