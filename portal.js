@@ -14,7 +14,7 @@
     if (!response.ok) throw new Error(`manifest ${response.status}`);
     const manifest = await response.json();
     state.textContent = manifest.status || 'READ_ONLY SNAPSHOT';
-    meta.textContent = `Build ${manifest.built_at} · ${manifest.sources.length} Quellen`;
+    meta.textContent = `Build ${manifest.built_at} · ${manifest.surface_count} Leseflächen`;
     summary.textContent = manifest.sources.map((source) => `${source.label} ${source.revision.slice(0, 8)}`).join(' · ');
   } catch (error) {
     state.textContent = 'QUELLANSICHT';

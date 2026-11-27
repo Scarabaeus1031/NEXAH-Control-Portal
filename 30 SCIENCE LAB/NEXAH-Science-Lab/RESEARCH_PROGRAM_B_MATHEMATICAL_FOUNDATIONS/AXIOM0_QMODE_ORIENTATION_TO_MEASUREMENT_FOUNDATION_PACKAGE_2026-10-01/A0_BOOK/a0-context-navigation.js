@@ -3,7 +3,7 @@
   const src = document.currentScript?.src;
   if (!src || window.self !== window.top) return;
   const map = document.createElement('script');
-  map.src = new URL('a0-orientation-map.js?v=20261029-a0-navigator-family-map-r2', src).href;
+  map.src = new URL('a0-orientation-map.js?v=a0-editorial-directory', src).href;
   document.head.append(map);
 })();
 (() => {
@@ -170,6 +170,41 @@
         ]
       },
       {
+        "label": "Instrumente & interne Kandidaten",
+        "items": [
+          [
+            "A0_PASCAL_GENERATION_CORNER.html#unified-generation-corner-candidate",
+            "Generation Corner · A0 Entry",
+            "Rödelheim Observatory, Q°-Achse, Five H, Complex Fold, Hof und Generationen · interne, noch nicht publizierte Candidate-Revision"
+          ],
+          [
+            "A0_PLATINUM_IRIDIUM_PI_LENS.html",
+            "Platinum / Iridium · π Lens",
+            "Interne source-bound Linse für Dual Shell, Möbius-Return, Fourier-Slices und Holonomy"
+          ],
+          [
+            "A0_MATROSCHKA_CLUSTER_BRIDGE.html",
+            "Matroschka Cluster Bridge",
+            "Verschachtelte Carrier und Cluster als begrenztes internes Vergleichsinstrument"
+          ],
+          [
+            "A0_THREE_MATRIX_HOLONOMY_WORKBENCH.html",
+            "Three-Matrix Holonomy Workbench",
+            "Nichtkommutative Matrixfolge und Return als interne mathematische Werkbank"
+          ],
+          [
+            "http://127.0.0.1:4328/scc-003-r1/",
+            "SCC-003-R1 · Reviewraum (lokal)",
+            "Zielroute review.nexah.de · gefrorenes 30-Dateien-Paket · lokales Owner-Staging, nicht publiziert, Reviewer noch offen"
+          ],
+          [
+            "http://127.0.0.1:4328/review-assets/scc-003-r1/demonstrators/complex-fold-18x23.html?rev=crt-ghost-grid-20261110#root432-keystone-capsule",
+            "SCC-003 · Complex Fold 18×23",
+            "Root 432, Keystone, CRT Ghost Grid und Fold Address · bestehender SCC-003-Demonstrator mit Science-Desk- und Mathfield-Return"
+          ]
+        ]
+      },
+      {
         "label": "Papers",
         "compact": true,
         "items": [
@@ -194,9 +229,9 @@
             ""
           ],
           [
-            "assets/a0-field-notes/index.html#note-49",
-            "Field Notes · Theory kurz",
-            "Begleitnotiz zur bestehenden Theory-Arbeitsquelle · kein Paper"
+            "A0_FIELD_NOTES.html#observation-note",
+            "Field Notes · Lesepfad",
+            "Kuratiertes Deckblatt für Observation, Difference, Time After Time und den +1-Return"
           ]
         ]
       },
@@ -619,6 +654,9 @@
         "pages": [
           "A0_TOURS.html",
           "A0_NEXAH_APERTURE_JOURNEY.html",
+          "A0_FIELD_NOTE_I_OBSERVATION.html",
+          "A0_FIELD_NOTE_II_DIFFERENCE.html",
+          "A0_FIELD_NOTE_III_TIME_AFTER_TIME.html",
           "A0_LOOK_AGAIN_PLAY.html",
           "A0_RAINBOW_PURPLE_RAIN.html",
           "A0_NEWTON_GOETHE_OBSERVER_LENS.html",
@@ -640,8 +678,11 @@
         "title": "Zusammenhang und Methode",
         "pages": [
           "A0_LIVING_BLUEPRINT.html",
+          "A0_ARCHITECTURE_OF_DIFFERENCE.html",
+          "A0_FIELD_NOTES.html",
           "A0_THEORY_STORYBOARD.html",
           "A0_FAMILY_CONNECTION_ATLAS.html",
+          "A0_SCARAB_ORIGIN_MOBIUS_RAMANUJAN.html",
           "A0_NEXAH_RESEARCH_METHOD.html",
           "A0_METHOD.html"
         ]
@@ -677,13 +718,23 @@
           "A0_BOUNDARY_GRAPH_DEMONSTRATOR.html",
           "A0_JOINT_APPLICATION_DEMONSTRATOR.html",
           "A0_JARP_CROSS_LENS_EXTENSION.html",
-          "A0_IHARA_HASHIMOTO_CYCLE_BRIDGE.html"
+          "A0_IHARA_HASHIMOTO_CYCLE_BRIDGE.html",
+          "A0_RIEMANN_HALFLINE_THETA_RETURN.html",
+          "A0_NBAND_QUADRATURE_BOUNDARY_LAB.html",
+          "A0_PLATINUM_IRIDIUM_PI_LENS.html",
+          "A0_THREE_MATRIX_HOLONOMY_WORKBENCH.html"
         ]
       },
       {
         "title": "Grids · Adressen und Projektionen",
         "pages": [
           "A0_NUMBERMAGICK_GRID_RESEARCH.html",
+          "A0_PRIMECUBE_GAP_FOLD_LAB.html",
+          "A0_PRIME_PROJECTION_TEST_SUITE.html",
+          "A0_HARMONIC_PRIME_CODEX_GRID37.html",
+          "A0_MIRROR_NODES_PRIME_CUBE.html",
+          "A0_CRT_ROOT_BOUNDARY_AUDIT.html",
+          "A0_PRIMEFIELD.html",
           "A0_PINK_DIAMOND_GRID_ATLAS.html"
         ]
       },
@@ -694,8 +745,12 @@
           "A0_PENTAGON_BODY_EXHIBITION.html",
           "A0_PENTAGON_BODY_RETURN_GUIDED.html",
           "A0_TESSAREC_BLUE_BODY_LAB.html",
+          "A0_HELIX_VIEW_ADAPTER.html",
+          "A0_FOLD_GEOMETRY_NAVIGATOR.html",
+          "A0_ROOT_SHRINKING_1729_RETURN.html",
           "A0_BLUE_BODY_DODECA_COUNTERSHOT.html",
           "A0_AXIS08_FOLD_RETURN_SEQUENCER.html",
+          "A0_MATROSCHKA_CLUSTER_BRIDGE.html",
           "A0_AXIAL_CARRIER_ADAPTER_SUITE.html",
           "A0_GAME_4_LIFE_PLUS_1.html",
           "A0_GAME_OF_WORLDS.html",
@@ -765,6 +820,8 @@
           "A0_RESEARCH_DESK.html",
           "A0_F_A0_26_REVIEW_PROBE.html",
           "A0_RESEARCH_BACKLOG.html",
+          "A0_ORIENTATION_DESK_RECOVERED.html",
+          "A0_NEXAHEDRON_LIVING_WORKSPACE_SNAPSHOT.html",
           "A0_BUILDER_LOG.html",
           "A0_LABORATORY.html"
         ]
@@ -844,12 +901,17 @@
   // continue to open their long A0 reader/showcase projections separately.
   const scienceReaderHref = "A0_SCIENCE.html#top";
   const builderShowcaseHref = "A0_BUILDER_TOY_STORE.html#top";
-  const scienceDeskHref = "A0_RESEARCH_DESK.html?desk=overview&rev=currentness-r4-20261103#science-currentness-20261103";
-  const builderDeskHref = "../../../../../10%20NEXAH%20CORE/NEXAH/BUILDER/B0_BUILDER_DECK/build-desk.html#top";
-  const missionControlHref = "../../../../../00%20EXECUTIVE/NEXAH-Mission-Control/INTERNAL_NAVIGATOR/index.html#action-board";
+  const scienceDeskHref = "A0_RESEARCH_DESK.html?desk=overview&rev=research-reader-r1-20261110#nexah-research-reader-currentness-20261110";
+  // The A0 owner preview is served from A0_BOOK. Cross-repository ../ routes
+  // escape that HTTP root and therefore resolve to 404 even though the files
+  // exist on disk. These source-preserving symlink routes keep one canonical
+  // Desk implementation while making both destinations reachable in preview.
+  const builderDeskHref = "owner-routes/builder-desk/build-desk.html#top";
+  const missionControlHref = "owner-routes/mission-control/INTERNAL_NAVIGATOR/index.html#action-board";
   // Each lane gets its own invitation. Human is experience-led; Builder keeps the workshop.
   const humanShowcase = [
     ["A0_NEXAH_APERTURE_JOURNEY.html#a0-human-overview", "A0 HUMAN VIEW", "Bestand, Apps, Experiences, Lesepfade, Szenen und kontrolliertes Delta vor der einzelnen Journey", "nexah", "Start here · Inventory / Delta"],
+    ["../../../SCIENCE_LAB/EXPORTS/MIWA_PINEAP_AN_DROMEDA.html", "MIWA · SKY THREADS", "Human Observatory mit Sternfeld, Apertur, Distanzfäden und quellgebundenem Record; internes Staging, keine astronomische Kopplungsbehauptung", "cells", "HUMAN OBSERVATORY · LOCAL STAGING"],
     ["a0-public-arkade-index.html#arkade", "ARKADE", "ONE PULSE und drei spielbare Welten direkt erleben", "arcade", "Play · Consumer View"],
     ["A0_GAME_OF_WORLDS.html", "GAME OF WORLDS", "Der originale Human-Einstieg in ONE PULSE und die drei spielbaren Welten", "body", "Human Flagship · Original"],
     ["A0_OPIUM.html", "OPIUM / Club", "Club Machine, Relations Player und Control Room als ein bestehendes Erlebnis-Ensemble", "book", "Club · Human Flagship"],
@@ -879,12 +941,19 @@
   const builderFlagshipConstellation = machinaMainModules.map(([route, name, role, copy, accent]) => [route, name, copy, accent, role]);
   const scienceFlagshipSourceHref = "DRAFTS/A0_PERIODIC_CARRIER_Z100_2026-11-03.html#game-of-worlds-carrier-binding";
   const redBalloonFlagshipHref = "http://127.0.0.1:4328/scc-003-r1/generation-study/?rev=state-balance-r1#red-balloon-balance-title";
-  const ioiOpenBookFlagshipHref = "DRAFTS/A0_IOI_LEAF_FOLD_OPEN_BOOK_START_2026-11-02.html#tessarec3OperatorMatrix";
+  const complexFoldScc003Href = "http://127.0.0.1:4328/review-assets/scc-003-r1/demonstrators/complex-fold-18x23.html?rev=crt-ghost-grid-20261110#root432-keystone-capsule";
+  const generationCornerCandidateHref = "A0_PASCAL_GENERATION_CORNER.html#unified-generation-corner-candidate";
+  const scc003ReviewStagingHref = "http://127.0.0.1:4328/scc-003-r1/";
+  const ioiOpenBookFlagshipHref = "DRAFTS/A0_IOI_LEAF_FOLD_OPEN_BOOK_START_2026-11-02.html#a0-101-orientation-coupler";
   const scienceHighlights = [
+    ["A0_PLATINUM_IRIDIUM_PI_LENS.html", "PI LENS · KLEIN / FOURIER / HOLONOMY", "Aktueller topologischer Höhepunkt: Dual Shell, Möbius-Return, geschlossene Klein-Immersion, Fourier-Slices und die nichtkommutative 3-Matrix-Workbench in einer source-bound Linse", "edelweiss", "CURRENT HIGHLIGHT · 12.11 · 37/37 + 426/426 PASS"],
     ["A0_SCIENCE.html#top", "A0 Science", "Lange redaktionelle Science-Seite mit Forschungsstand, Ergebnissen, Instrumenten, Methode und Grenzen", "nexah", "Science · Forschungsstand"],
     ["A0_RESEARCH_DESK.html?desk=overview&channel=science#a0-current-state", "CURRENT STATE · SCIENCE", "Findings, Review-Gates, Staging und nächster zulässiger Exit in einer Desk-Linse", "cells", "Desk lens · Stand 03.11."],
+    [generationCornerCandidateHref, "GENERATION CORNER", "A0-gerahmte interne Leseroute: Rödelheim Observatory als Q°-Achse, Generationsgeschichte, Five H, Complex Fold, Hof und genealogischer Return", "edelweiss", "A0 INTERNAL CANDIDATE · UNPUSHED"],
+    [scc003ReviewStagingHref, "SCC-003-R1 · REVIEW", "Gefrorenes 30-Dateien-Reviewpaket und Proof Capsule im lokalen Owner-Staging; Zielroute review.nexah.de, noch nicht deployed oder veröffentlicht", "cells", "OUTREACH GATE · REVIEWER PENDING · LOCAL ONLY"],
     [scienceFlagshipSourceHref, "STOFFREGISTER Z100", "Periodischer Carrier, drei Elementansichten und der source-bound Game-of-Worlds-Anschluss an derselben wiederauffindbaren Buchstelle", "carrier", "SCIENCE FLAGSHIP · STOFFREGISTER"],
     [redBalloonFlagshipHref, "RED BALLOON", "SCC-003 als source-bound Science Flagship Notebook: finite Quelle, Quotient, Residuum und Return mit offenen Claim-Grenzen", "relation", "SCIENCE FLAGSHIP · RED BALLOON"],
+    [complexFoldScc003Href, "SCC-003 · COMPLEX FOLD", "18×23-Demonstrator mit Root-432-Kapsel, CRT Ghost Grid, Fold Address und direkten Returns zu Science Desk und Mathfield", "edelweiss", "SCC-003 · SOURCE-BOUND DEMONSTRATOR"],
     [ioiOpenBookFlagshipHref, "101 / A0 OPEN BOOK", "Leaf Fold, Cube Pivot, TESSAREC³-Operatorenmatrix und Open Book als eine reproduzierbare Leseroute", "body", "SCIENCE FLAGSHIP · 101 / A0"],
     ["A0_DATA_AND_REGISTERS.html#top", "A0 NSNavigator", "A0-Struktur binden, zuständige Register finden und vorhandene Records weiterverwenden", "book", "Science · Source-bound Register Lens"]
   ];
@@ -938,6 +1007,7 @@
       card.href = href;
       if (href === builderShowcaseHref) card.setAttribute("data-a0-builder-showcase", "");
       if (href === scienceFlagshipSourceHref) card.setAttribute("data-a0-science-flagship", "");
+      if (href === "A0_PLATINUM_IRIDIUM_PI_LENS.html") card.setAttribute("data-a0-science-current-highlight", "");
       card.innerHTML = `<span class="a0-showcase-art" aria-hidden="true"></span><span class="a0-showcase-copy"><small>${status}</small><strong>${label} <span aria-hidden="true">↗</span></strong><span>${description}</span></span>`;
       if (targetFile(href) === file) card.setAttribute("aria-current", "page");
       showcase.append(card);
@@ -1375,6 +1445,15 @@
         triggers: localScienceFlagshipEntries,
         route: "science-stoffregister",
         lane: "science"
+      });
+      mountSiteProjection({
+        href: "A0_BUILDER_LOG.html#a0-b0-instrument-return-20261126",
+        label: "A0 / B0 · GEMEINSAMER RÜCKLAUF",
+        title: "Gemeinsamer A0/B0-Rücklauf",
+        triggers: [],
+        route: "builder-return",
+        lane: "builder",
+        suppressInnerShell: true
       });
       mountSiteProjection({
         href: builderShowcaseHref,

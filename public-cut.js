@@ -26,6 +26,23 @@
     return allowedPageSuffixes.some((suffix) => target.pathname.endsWith(suffix));
   }
 
+  function isIotaEvidence(anchor, target) {
+    if (!anchor.closest('#iota-jpl-abschluss') || target.protocol !== 'https:' || target.port) return false;
+    const prefix = 'RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/';
+    const evidence = 'IOTA_JPL_2023_2026-11-26/';
+    const path = target.pathname;
+    if (target.hostname === 'github.com') {
+      const file = path.match(/^\/Scarabaeus1031\/NEXAH-Science-Lab\/blob\/[a-f0-9]{40}\/(.+)$/)?.[1];
+      return file === prefix + 'A0_BOOK/A0_DRAFT_DRIFT_HOUSING_112_NOTE_2026-11-23.md'
+        || file === prefix + evidence + 'README.md';
+    }
+    if (target.hostname === 'raw.githubusercontent.com') {
+      const file = path.match(/^\/Scarabaeus1031\/NEXAH-Science-Lab\/[a-f0-9]{40}\/(.+)$/)?.[1];
+      return file === prefix + evidence + 'phase-sweep/slog.csv.gz';
+    }
+    return false;
+  }
+
   function notice() {
     let node = document.getElementById('public-cut-notice');
     if (!node) {
@@ -52,7 +69,7 @@
     const raw = anchor.getAttribute('href');
     if (!raw || raw.startsWith('#') || raw.startsWith('mailto:')) return;
     const target = new URL(raw, location.href);
-    if (permitted(target)) return;
+    if (permitted(target) || isIotaEvidence(anchor, target)) return;
     event.preventDefault();
     notice();
   }, true);
