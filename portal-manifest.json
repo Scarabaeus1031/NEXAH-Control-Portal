@@ -1,7 +1,7 @@
 {
   "schema": "nexah.owner-read-portal.manifest.v1",
   "status": "PUBLIC RELEASE / READ ONLY / NO CONTROL",
-  "built_at": "2026-11-27T14:35:23.369Z",
+  "built_at": "2026-11-28T02:02:42.605Z",
   "authority": "projection-only; authority remains with owning sources",
   "surface_count": 3,
   "mission_control_verified_sources": 555,
@@ -12,14 +12,14 @@
   ],
   "scarabaeus_return": "https://www.scarabaeus1033.net",
   "file_count": 33,
-  "bytes": 12425120,
+  "bytes": 12447964,
   "sources": [
     {
       "id": "MISSION_CONTROL",
       "label": "MISSION CONTROL",
       "repository": "00 EXECUTIVE/NEXAH-Mission-Control",
       "branch": "codex/mission-control-status-sync",
-      "revision": "042b0ee371d6dc86e80e2a41d31ae73ac66993fe",
+      "revision": "005979050e5168916c82fba3b7812a12675152e7",
       "dirty": false,
       "entry": "00 EXECUTIVE/NEXAH-Mission-Control/INTERNAL_NAVIGATOR/index.html",
       "entry_sha256": "dd2336b95f6a171228136f220e10625f0bf8913e0944e44fdaf04a379741ada6"
@@ -39,11 +39,11 @@
       "label": "A0 SCIENCE DESK",
       "repository": "30 SCIENCE LAB/NEXAH-Science-Lab",
       "branch": "UNAVAILABLE",
-      "revision": "dfcebba8a211d4084ca605f04b02347a0eb0ec0d",
+      "revision": "f1cea3a0e2fd0527f72e771b60d8841a5bdb015d",
       "dirty": false,
       "entry": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_RESEARCH_DESK.html",
-      "entry_sha256": "c3caa7ab4c1ad9a4c4e7b28d72892fced37b4acaff2c6f5a5a42595ba2eb573f"
+      "entry_sha256": "d570e1c741df84832451a718a8c8e654e773c4d79391bd1c315a859e9d6f1a7a"
     }
   ],
-  "released_at": "2026-11-27T14:35:23.526Z"
+  "released_at": "2026-11-28T02:02:42.802Z"
 }
