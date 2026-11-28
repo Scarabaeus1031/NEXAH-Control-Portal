@@ -49,8 +49,8 @@ jobs:
         uses: actions/checkout@v5
         with:
           repository: Scarabaeus1031/NEXAH-Science-Lab
-          # This revision matches the Science Desk bytes in the currentness manifest.
-          ref: dfcebba8a211d4084ca605f04b02347a0eb0ec0d
+          # Published Science Lab revision matching the Bench checksum in Mission Control.
+          ref: f1cea3a0e2fd0527f72e771b60d8841a5bdb015d
           path: _sources/30 SCIENCE LAB/NEXAH-Science-Lab
           token: ${{ secrets.SOURCE_REPO_TOKEN }}
 
